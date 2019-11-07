@@ -1,4 +1,6 @@
 class BoardsController < ApplicationController
+  before_action :set_board, only: %i[destroy update]
+
   def index
     @boards = Board.all.order(created_at: :desc)
     respond_to do |format|
@@ -20,8 +22,15 @@ class BoardsController < ApplicationController
   end
 
 
-  def update; end
-  def destroy; end
+  def update
+    @board.update(board_params)
+    render json: @board
+  end
+  
+  def destroy
+    @board.destroy
+    render json: @board
+  end
 
   private
 
@@ -29,4 +38,7 @@ class BoardsController < ApplicationController
     params.require(:board).permit(:title)
   end
 
+  def set_board
+    @board = Board.fin(params[:id])
+  end
 end

@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
-  resources :boards
+  resources :boards, only %i[index create update destroy]
 end
