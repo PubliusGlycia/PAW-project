@@ -14,7 +14,6 @@ export const fetchBoards = async () => {
   });
   
   const boardsJSON = await boardsResponse.json();
-  console.log("kikou", boardsJSON)
   return boardsJSON.boards;
 };
 
@@ -30,3 +29,29 @@ export const addBoard = async (title) => {
   const board = await boardResponse.json();
   return board.board;
 }
+
+export const removeBoard = async id => {
+  const boardResponse = await fetch(`/boards/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(addCsrf({})),
+  });
+  const board = await boardResponse.json();
+  return board.board;
+}; 
+
+export const updateBoard = async ( id, title ) => {
+  const boardResponse = await fetch(`/boards/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(addCsrf({ board: { title } })),
+  });
+  const boardJSON = await boardResponse.json();
+  return boardJSON.board;
+};
