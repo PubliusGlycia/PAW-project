@@ -12,22 +12,22 @@ export const fetchBoards = async () => {
       Accept: 'application/json'
     }
   });
-  
+
   const boardsJSON = await boardsResponse.json();
   return boardsJSON.boards;
 };
 
 export const addBoard = async (title) => {
-  const boardResponse = await fetch('/boards', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-      },
-      body: JSON.stringify(addCsrf({board: { title } })),
-  });
-  const board = await boardResponse.json();
-  return board.board;
+    const boardResponse = await fetch('/boards', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+        },
+        body: JSON.stringify(addCsrf({board: { title } })),
+    });
+    const board = await boardResponse.json();
+    return board.board;
 }
 
 export const removeBoard = async id => {
@@ -41,7 +41,7 @@ export const removeBoard = async id => {
   });
   const board = await boardResponse.json();
   return board.board;
-}; 
+};
 
 export const updateBoard = async ( id, title ) => {
   const boardResponse = await fetch(`/boards/${id}`, {

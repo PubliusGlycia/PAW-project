@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { addBoard } from '../APIs/boards';
+import { Button } from 'reactstrap';
 
 export default class BoardCreate extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
       title: '',
+      toggle: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -22,34 +24,53 @@ export default class BoardCreate extends React.Component {
     this.props.onSubmit(newBoard);
     this.setState({  
      title: '',
+     toggle: false
     });
   }
 
+  toggleCreateForm = () => {
+    this.setState({
+      toggle: !this.state.toggle
+    })
+  };
+
   render () {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}  >
-          <label htmlFor="Title">
-            <input type="text" 
-              name="title" 
-              id="title" 
-              className="form-control m-2 p-2"
-              placeholder="Title"
-              value={this.state.title}
-              onChange={this.handleChangeTitle}
-              required
-            />
-          </label>
-          <div>
-            <input 
+    if (this.state.toggle === false) {
+      return (
+        <Button outline color="primary" onClick={this.toggleCreateForm}> 
+          Create a new board
+        </Button>
+      )
+    } else {
+      return (
+        <div>
+          <form onSubmit={this.handleSubmit}>
+            <label htmlFor="Title">
+              <input type="text" 
+                name="title" 
+                id="title" 
+                className="form-control"
+                placeholder="Title"
+                value={this.state.title}
+                onChange={this.handleChangeTitle}
+                required
+              />
+            </label>
+              <input 
               type="submit"
               value="Create"
-              className="btn btn-success m-2"
+              className="btn btn-success"
               required
             />
-          </div>
-        </form>
-      </div>
-    );
+            <Button 
+              color="warning"
+              onClick={this.toggleCreateForm}
+            >
+              Cancel
+            </Button>
+          </form>
+        </div>
+      );
+    }
   }
 }

@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import { fetchBoards } from './APIs/boards';
 import BoardCreate from './components/BoardCreate';
-import BoardDelete from './components/BoardDelete';
 import BoardShow from './components/BoardShow';
-import { Button } from 'reactstrap';
+import { Button, Row, Navbar, NavItem, NavbarBrand, Collapse, Nav } from 'reactstrap';
 
 export default class App extends Component {
 	constructor(props) {
     super(props);
 		this.state = {
-      boards: [],
-      toggle: false
+  		boards: [],
 		};
     this.addBoardToList = this.addBoardToList.bind(this);
     this.removeBoardFromList = this.removeBoardFromList.bind(this);
@@ -53,32 +51,39 @@ export default class App extends Component {
   render() {
 
     return (
-    	<div className="container mt-5">
+      <div>
+        <Navbar color="light" light expand="md">
+          <div className="container">
+            <NavbarBrand href="/">Trello clone</NavbarBrand>
+            <Collapse isOpen={this.state.isOpen} navbar>
+              <Nav className="ml-auto" navbar>
+                <NavItem>
+                  <BoardCreate onSubmit={this.addBoardToList} />
+                </NavItem>
+              </Nav>
+            </Collapse>
+          </div>
+        </Navbar>
 
-        <h1>Choose your Board</h1>
+      	<div className="container mt-5">
 
-    		<div>
+      		<div className="mt-5 mx-auto">
+            <Row className="d-flex justify-content-center">
+        			{this.state.boards.map((board, i) => (
+    			     	<div key={i}>
 
-    			{this.state.boards.map((board, i) => (
-			     	<div key={i}>
+                  <BoardShow 
+                    board={board}
+                    updateBoard={this.updateBoard}
+                    removeBoardFromList={this.removeBoardFromList}
+                  />
 
-              <BoardShow 
-                board={board}
-                updateBoard={this.updateBoard}
-              />
-
-              <BoardDelete 
-                board_id={board.id}
-                removeBoardFromList={this.removeBoardFromList}
-              />
-			       </div>
-			    ))}
-
-				</div>
-
-        <BoardCreate onSubmit={this.addBoardToList} />
-
-			</div>
+    			       </div>
+    			    ))}
+            </Row>
+  				</div>
+  			</div>
+      </div>
 		);
   }
 }

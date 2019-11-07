@@ -48,11 +48,10 @@ export default class BoardEdit extends React.Component {
     if (this.props.edit === false) {
       return (
         <Button 
-          className="ml-3"
-          color="info"
+          color="warning"
           onClick={this.props.toggleEdit}
         >
-          EDIT
+          Edit
         </Button>
       );
     } else {
@@ -71,7 +70,7 @@ export default class BoardEdit extends React.Component {
                 onChange={this.handleChangeTitle}
               />
               </label><br />
-            {this.renderButtons()}
+              {this.renderButtons()}
             </form>
           </div>
         </div>

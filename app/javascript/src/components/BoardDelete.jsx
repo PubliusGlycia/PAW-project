@@ -14,9 +14,9 @@ export default class BoardDelete extends React.Component {
   render () {
     return (
       <Button 
-        className="ml-3" 
         color="danger" 
         onClick={this.handleClick}
+        className="mt-2"
       >
         Delete
       </Button>
