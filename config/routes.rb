@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
   resources :pages
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  root to: 'home#index'
+
+  resources :boards, only: %i[index create update destroy] do
+    resources :lists, only: %i[create]
+  end
+  
 end
