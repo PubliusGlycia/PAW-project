@@ -54,7 +54,7 @@ export default class App extends Component {
       <div>
         <Navbar color="light" light expand="md">
           <div className="container">
-            <NavbarBrand href="/">Trello clone</NavbarBrand>
+            <NavbarBrand href="/">PawApp</NavbarBrand>
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem>
