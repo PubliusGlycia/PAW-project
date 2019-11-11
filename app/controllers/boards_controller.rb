@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class BoardsController < ApplicationController
-  before_action :set_board, only: %i[destroy update]
+  before_action :set_board, only: %i[destroy update show]
 
   def index
     @boards = Board.all.order(created_at: :desc)
@@ -10,8 +12,6 @@ class BoardsController < ApplicationController
     end
   end
 
-  def new; end
-  
   def create
     board = Board.create(board_params)
     respond_to do |format|
@@ -21,12 +21,22 @@ class BoardsController < ApplicationController
     end
   end
 
+  def show
+    respond_to do |format|
+      format.html do
+        render(text: "not implemented")
+      end
+      format.json do
+        render json: @course
+      end
+    end
+  end
 
   def update
     @board.update(board_params)
     render json: @board
   end
-  
+
   def destroy
     @board.destroy
     render json: @board
