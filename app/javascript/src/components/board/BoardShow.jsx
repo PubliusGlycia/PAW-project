@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import ListIndex from '../list/ListIndex';
+import { getBoard } from '../../APIs/boards';
 
 export default class BoardShow extends React.Component {
+
 	render() {
 
-		const board = this.props.location.board
-		const lists = this.props.location.lists
+	const title = this.props.location.state.title
+	const board_id = this.props.match.params.id
 
 	  return (
-	  	<div>
-		    <div className="m-3 w-100">
-		    	<h3>{board.title}</h3>
-		    	<div>
-		    		<ListIndex 
-		    			lists={lists} 
-		    			board={board}
-		    		/>
-		    	</div>
-		    </div>
-		  </div>	
-	  )
+      <div>
+        <div className="m-3 w-100">
+            <h3>{title}</h3>
+            <div>
+                <ListIndex 
+                  board_id={board_id}
+                />
+            </div>
+        </div>
+      </div>    
+	  );
 	}
 }

@@ -7,7 +7,7 @@ export default class ListShow extends React.Component {
     super(props);
     this.state = { 
       editable: false,
-    };
+    }
   }
 
   listTitle = () => {
@@ -22,8 +22,8 @@ export default class ListShow extends React.Component {
   toggleEdit = () => {
     this.setState({
       editable: !this.state.editable,
-    });
-  };
+    })
+  }
 
 	render() {
 
@@ -49,7 +49,11 @@ export default class ListShow extends React.Component {
 	      			toggleEdit={this.toggleEdit}
               updateList={this.props.updateList}
 	      		/>
-	      		<ListDelete list={list} />
+	      		<ListDelete
+              board={board}
+              list={list}
+              deleteList={this.props.deleteList}
+            />
 	      	</div>
 	      </div>
 		  </div>

@@ -23,6 +23,9 @@ class BoardsController < ApplicationController
 
   def show
     respond_to do |format|
+      format.html do
+        render :index
+      end
       format.json do
         render json: @board
       end

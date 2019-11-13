@@ -14,7 +14,10 @@ export default class BoardDelete extends React.Component {
     return (
       <Button 
         color="danger" 
-        onClick={this.handleClick}
+        onClick={e =>
+          window.confirm("Are you sure you wish to delete this board?") &&
+          this.handleClick(e)
+        }
         className="mt-2"
       >
         Delete

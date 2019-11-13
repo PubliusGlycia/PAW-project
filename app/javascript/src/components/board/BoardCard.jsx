@@ -35,8 +35,6 @@ export default class BoardCard extends React.Component {
 
     const boardTo = { 
       pathname: '/boards/' + board.id, 
-      board: board,
-      lists: board.lists
     };
 
     return (
@@ -63,7 +61,12 @@ export default class BoardCard extends React.Component {
               removeBoardFromList={this.props.removeBoardFromList}
             />
 
-            <Link to={boardTo}>
+            <Link to={{
+              pathname: 'boards/' + board.id,
+              state: {
+                title: board.title
+              }
+            }}>
               <Button className="mt-2 w-100">
                 Show {board.lists.length}
               </Button>

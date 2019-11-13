@@ -15,7 +15,7 @@ export default class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/boards" component={BoardIndex} />
-          <Route exact path="/boards/:id" component={BoardShow} />
+          <Route path="/boards/:id" component={BoardShow} />
         </Switch>
       </div>
     );

@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: %i[update]
+  before_action :set_list, only: %i[update destroy]
 
   def index
     @board = Board.find(params[:board_id])
@@ -22,6 +22,11 @@ class ListsController < ApplicationController
 
   def update
     @list.update(list_params)
+    render json: @list
+  end
+
+  def destroy
+    @list.destroy
     render json: @list
   end
 

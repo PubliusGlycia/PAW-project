@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import ListShow from './ListShow';
 import ListCreate from './ListCreate';
-import { fetchLists } from '../../APIs/lists'
+import { fetchLists } from '../../APIs/lists';
+import { getBoard } from '../../APIs/boards';
 import { Row } from 'reactstrap';
 
 export default class ListIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      board: [],
       lists: [],
     };
     this.addListToList = this.addListToList.bind(this);
@@ -21,13 +23,21 @@ export default class ListIndex extends React.Component {
   }
 
   componentDidMount = async () => {
+    await this.refreshBoard();
     await this.refreshLists();
   }
 
   refreshLists = async () => {
-    const lists = await fetchLists(this.props.board.id);
+    const lists = await fetchLists(this.props.board_id);
     this.setState({
       lists
+    }); 
+  }
+
+  refreshBoard = async () => {
+    const board = await getBoard(this.props.board_id);
+    this.setState({
+      board
     }); 
   }
 
@@ -37,13 +47,21 @@ export default class ListIndex extends React.Component {
         list.id === updatedList.id ? updatedList : list
       ),
     });
-  };
+  }
+
+  deleteList = (listToDelete) => {
+    this.setState({
+      lists: this.state.lists.filter(list => listToDelete.id !== list.id)
+    });
+  }
 
 	render() {
 
 		const listColomnStyle = {
 			minWidth: '18em',
 		}
+
+    const board = this.state.board
 
 	  return (
 	  	<div className="m-2">
@@ -52,15 +70,16 @@ export default class ListIndex extends React.Component {
 			     	<div className="m-2" style={listColomnStyle} key={i}>
 	            <ListShow 
                 list={list}
-                board={this.props.board}
+                board={board}
                 updateList={this.updateList}
+                deleteList={this.deleteList}
               />
 			      </div>
 			    ))}
 
 		     	<div className="m-2" style={listColomnStyle}>
             <ListCreate 
-            	board={this.props.board}
+            	board={board}
             	onSubmit={this.addListToList}
             />
 		      </div>

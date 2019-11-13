@@ -41,3 +41,16 @@ export const updateList = async (board_id, id, title) => {
   const listJSON = await listResponse.json();
   return listJSON.list;
 };
+
+export const removeList = async (board_id, id) => {
+  const listResponse = await fetch(`/boards/${board_id}/lists/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(addCsrf({})),
+  });
+  const listJSON = await listResponse.json();
+  return listJSON.list;
+};
