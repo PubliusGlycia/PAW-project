@@ -2,28 +2,23 @@ import React, { Component } from 'react';
 import ListShow from './ListShow';
 import ListCreate from './ListCreate';
 import { fetchLists } from '../../APIs/lists';
-import { getBoard } from '../../APIs/boards';
 import { Row } from 'reactstrap';
 
 export default class ListIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      board: [],
       lists: [],
-    };
-    this.addListToList = this.addListToList.bind(this);
-    this.updateList = this.updateList.bind(this);
-  };
+    }
+  }
 
-  addListToList(newList) {
+  addListToList = (newList) => {
     this.setState({
        lists : [newList, ...this.state.lists],
-    }); 
+    })
   }
 
   componentDidMount = async () => {
-    await this.refreshBoard();
     await this.refreshLists();
   }
 
@@ -34,14 +29,7 @@ export default class ListIndex extends React.Component {
     }); 
   }
 
-  refreshBoard = async () => {
-    const board = await getBoard(this.props.board_id);
-    this.setState({
-      board
-    }); 
-  }
-
-  updateList(updatedList) {
+  updateList = (updatedList) => {
     this.setState({
       lists: this.state.lists.map(list =>
         list.id === updatedList.id ? updatedList : list
@@ -61,8 +49,6 @@ export default class ListIndex extends React.Component {
 			minWidth: '18em',
 		}
 
-    const board = this.state.board
-
 	  return (
 	  	<div className="m-2">
 		  	<Row>
@@ -70,7 +56,7 @@ export default class ListIndex extends React.Component {
 			     	<div className="m-2" style={listColomnStyle} key={i}>
 	            <ListShow 
                 list={list}
-                board={board}
+                board_id={this.props.board_id}
                 updateList={this.updateList}
                 deleteList={this.deleteList}
               />
@@ -79,7 +65,7 @@ export default class ListIndex extends React.Component {
 
 		     	<div className="m-2" style={listColomnStyle}>
             <ListCreate 
-            	board={board}
+              board_id={this.props.board_id}
             	onSubmit={this.addListToList}
             />
 		      </div>

@@ -17,17 +17,17 @@ export const fetchBoards = async () => {
   return boardsJSON.boards;
 };
 
-export const getBoard = async (id) => {
-const response = await fetch(`/boards/${id}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-  });
-  const boardJSON = await response.json()
-  return boardJSON.board;
-};
+// export const getBoard = async (id) => {
+// const response = await fetch(`/boards/${id}`, {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Accept: 'application/json',
+//     },
+//   });
+//   const boardJSON = await response.json()
+//   return boardJSON.board;
+// };
 
 export const addBoard = async (title) => {
     const boardResponse = await fetch('/boards', {

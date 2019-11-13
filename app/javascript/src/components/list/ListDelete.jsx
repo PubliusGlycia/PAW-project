@@ -5,8 +5,8 @@ import { Button } from 'reactstrap';
 export default class ListDelete extends React.Component {
 
   handleClick = async () => {
-    const { board, list } = this.props;
-    const listToDelete = await removeList(board.id, list.id);
+    const { board_id, list } = this.props;
+    const listToDelete = await removeList(board_id, list.id);
     this.props.deleteList(listToDelete); 
   };
 
@@ -18,7 +18,7 @@ export default class ListDelete extends React.Component {
 	        window.confirm("Are you sure you wish to delete this list?") &&
 	        this.handleClick(e)
 	    	}
-        className="mt-2"
+        className="ml-2"
       >
         Delete
       </Button>

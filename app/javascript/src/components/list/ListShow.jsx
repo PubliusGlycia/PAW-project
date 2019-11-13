@@ -1,12 +1,16 @@
-import React, { Component } from 'react';
-import ListEdit from './ListEdit';
-import ListDelete from './ListDelete';
+import React, { Component } from 'react'
+import ListEdit from './ListEdit'
+import ListDelete from './ListDelete'
+import CardCreate from '../card/CardCreate'
+import CardIndex from '../card/CardIndex'
+import { fetchCards } from '../../APIs/cards'
 
 export default class ListShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
       editable: false,
+      cards: [],
     }
   }
 
@@ -25,6 +29,19 @@ export default class ListShow extends React.Component {
     })
   }
 
+  componentDidMount = async () => {
+    await this.refreshCards();
+  }
+
+  refreshCards = async () => {
+    const board_id = this.props.board_id 
+    const list_id = this.props.list.id
+    const cards = await fetchCards(board_id, list_id);
+    this.setState({
+      cards,
+    }); 
+  }
+
 	render() {
 
     const listStyle = {
@@ -33,7 +50,6 @@ export default class ListShow extends React.Component {
     };
 
     const list = this.props.list;
-    const board = this.props.board;
 
 	  return (
 	  	<div className="col-12 p-3" style={listStyle}>
@@ -41,21 +57,31 @@ export default class ListShow extends React.Component {
 		  		<div>
 	      		{this.listTitle()}
 	      	</div>
-	      	<div>
+	      	<div className="d-flex">
 	      		<ListEdit 
-	      			board={board}
+	      			board_id={this.props.board_id}
 	      			list={list} 
 	      			editable={this.state.editable}
 	      			toggleEdit={this.toggleEdit}
               updateList={this.props.updateList}
 	      		/>
+
 	      		<ListDelete
-              board={board}
+              board_id={this.props.board_id}
               list={list}
               deleteList={this.props.deleteList}
             />
 	      	</div>
-	      </div>
+        </div>
+        <div>
+          <CardIndex 
+            list={list}
+            cards={this.state.cards}
+          />
+          <CardCreate 
+            list={list}
+          />
+        </div>
 		  </div>
 	  )
 	}

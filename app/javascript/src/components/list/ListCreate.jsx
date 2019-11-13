@@ -18,7 +18,7 @@ export default class ListCreate extends React.Component {
 
   handleSubmit = async e =>{
     e.preventDefault();
-    const board_id = this.props.board.id
+    const board_id = this.props.board_id
     const newList = await addList(board_id, this.state.title);
     this.props.onSubmit(newList);
     this.setState({  

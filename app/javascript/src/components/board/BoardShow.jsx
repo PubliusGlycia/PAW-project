@@ -6,8 +6,8 @@ export default class BoardShow extends React.Component {
 
 	render() {
 
-	const title = this.props.location.state.title
-	const board_id = this.props.match.params.id
+  	const title = this.props.location.state.title
+  	const board_id = this.props.match.params.id
 
 	  return (
       <div>

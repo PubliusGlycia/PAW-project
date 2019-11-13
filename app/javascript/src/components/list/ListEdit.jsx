@@ -10,9 +10,9 @@ export default class ListEdit extends React.Component {
   };
 
   handleSubmit = async e =>{
-    const {board, list} = this.props
+    const {board_id, list} = this.props
     e.preventDefault();
-    const updatedList = await updateList(board.id, list.id, this.state.title);
+    const updatedList = await updateList(board_id, list.id, this.state.title);
     this.props.updateList(updatedList);
     this.props.toggleEdit();
   }
@@ -50,7 +50,7 @@ export default class ListEdit extends React.Component {
 	  	return (
 	  		<div>
 			  	<div>
-				  	<button onClick={this.props.toggleEdit}>
+				  	<button className="btn btn-info" onClick={this.props.toggleEdit}>
 				  		Edit
 				  	</button>
 				  </div>
