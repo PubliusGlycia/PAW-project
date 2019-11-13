@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 
-const BoardShow = ({ match }) => {
-  return (
-    <div className="m-3 w-100">
-      I AM THE BOARD SHOW {match.params.id}
-    </div>
-  )
-}
+export default class BoardShow extends React.Component {
+	render() {
 
-export default BoardShow;
+		const lists = this.props.location.lists
+
+	  return (
+	  	<div className="container">
+		    <div className="m-3 w-100">
+		    	params {lists[0].title}
+		    </div>
+		  </div>	
+	  )
+	}
+}

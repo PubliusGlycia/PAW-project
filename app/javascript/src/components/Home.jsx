@@ -9,7 +9,7 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <div className="container mt-5">
+        <div className="container">
           <BoardIndex />
         </div>
       </div>

@@ -45,7 +45,7 @@ export default class BoardCreate extends React.Component {
       return (
         <div>
           <form onSubmit={this.handleSubmit}>
-            <label htmlFor="Title">
+            <label htmlFor="Title" className="mr-2">
               <input type="text" 
                 name="title" 
                 id="title" 
@@ -56,13 +56,14 @@ export default class BoardCreate extends React.Component {
                 required
               />
             </label>
-              <input 
+            <input 
               type="submit"
               value="Create"
               className="btn btn-success"
               required
             />
             <Button 
+              className="ml-2"
               color="warning"
               onClick={this.toggleCreateForm}
             >

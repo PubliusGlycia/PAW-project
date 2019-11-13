@@ -52,7 +52,7 @@ export default class BoardIndex extends Component {
   render() {
 
     return (
-      	<div className="container mt-5">
+      	<div className="container">
 
         <BoardCreate onSubmit={this.addBoardToList} />
 
@@ -60,7 +60,7 @@ export default class BoardIndex extends Component {
 
             <Row className="d-flex justify-content-center">
         			{this.state.boards.map((board, i) => (
-    			     	<div key={i}>
+    			     	<div className="w-25" key={i}>
                   <BoardCard 
                     board={board}
                     updateBoard={this.updateBoard}
