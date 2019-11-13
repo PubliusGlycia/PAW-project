@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Home from './components/Home';
-import BoardIndex from './components/BoardIndex';
-import BoardShow from './components/BoardShow'
+import BoardIndex from './components/board/BoardIndex';
+import BoardShow from './components/board/BoardShow'
 import Nav from './components/Nav'
 import { Route, Switch } from 'react-router-dom'
 

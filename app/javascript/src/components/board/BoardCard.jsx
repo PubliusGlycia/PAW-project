@@ -35,6 +35,7 @@ export default class BoardCard extends React.Component {
 
     const boardTo = { 
       pathname: '/boards/' + board.id, 
+      board: board,
       lists: board.lists
     };
 

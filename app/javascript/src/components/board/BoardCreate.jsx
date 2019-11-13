@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addBoard } from '../APIs/boards';
+import { addBoard } from '../../APIs/boards';
 import { Button } from 'reactstrap';
 
 export default class BoardCreate extends React.Component {

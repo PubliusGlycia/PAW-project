@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { fetchBoards } from '../APIs/boards';
-import BoardCreate from '../components/BoardCreate';
-import BoardCard from '../components/BoardCard';
+import { fetchBoards } from '../../APIs/boards';
+import BoardCreate from './BoardCreate';
+import BoardCard from './BoardCard';
 import { Row } from 'reactstrap';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
@@ -40,7 +40,6 @@ export default class BoardIndex extends Component {
   };
 
   updateBoard(updatedBoard) {
-    console.log("debug", this.state.boards)
     const boards = this.state.boards;
     this.setState({
       boards: boards.map(board =>

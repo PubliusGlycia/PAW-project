@@ -17,6 +17,19 @@ export const fetchBoards = async () => {
   return boardsJSON.boards;
 };
 
+// export const getBoard = async (id) => {
+// const response = await fetch(`/boards/${id}`, {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Accept: 'application/json',
+//     },
+//   });
+
+//   const board = await response.json()
+//   return board;
+// };
+
 export const addBoard = async (title) => {
     const boardResponse = await fetch('/boards', {
         method: 'POST',
