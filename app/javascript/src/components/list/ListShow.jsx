@@ -74,12 +74,15 @@ export default class ListShow extends React.Component {
 	      	</div>
         </div>
         <div>
-          <CardIndex 
-            list={list}
-            cards={this.state.cards}
-          />
           <CardCreate 
-            list={list}
+              list_id={this.props.list.id}
+              board_id={this.props.board_id}
+		      	  onSubmit={this.addCardToList}
+		        />
+          <CardIndex 
+            list_id={this.props.list.id}
+            board_id={this.props.board_id}
+            cards={this.state.cards}
           />
         </div>
 		  </div>

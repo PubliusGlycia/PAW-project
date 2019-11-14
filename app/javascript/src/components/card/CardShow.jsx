@@ -34,7 +34,7 @@ export default class CardShow extends React.Component {
 	
 	refreshCards = async () => {
 		const board_id = this.props.board_id 
-		const list_id = this.props.list.id
+		const list_id = this.props.list_id
 		const cards = await fetchCards(board_id, list_id);
 		this.setState({
 		  cards,
@@ -72,7 +72,7 @@ export default class CardShow extends React.Component {
 				list_id={this.props.list_id}
 				card_id={this.props.card_id}
 				card={card}
-				deleteCard={this.props.deleteCard}
+				deleteCard={this.props.card.deleteCard}
 	  		/>
 		</div>
   		</div>

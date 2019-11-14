@@ -25,7 +25,7 @@ export const addCard = async (board_id, list_id, title) => {
         },
         body: JSON.stringify(addCsrf({card: { title, list_id } })),
     });
-  const cardJSON = await listResponse.json();
+  const cardJSON = await cardResponse.json();
   return cardJSON.card;
 };
 
@@ -38,7 +38,7 @@ export const updateCard = async (board_id, list_id, id, title) => {
     },
     body: JSON.stringify(addCsrf({ card: { title } })),
   });
-  const cardJSON = await listResponse.json();
+  const cardJSON = await cardResponse.json();
   return cardJSON.card;
 };
 
@@ -51,6 +51,6 @@ export const removeCard = async (board_id, list_id, id) => {
     },
     body: JSON.stringify(addCsrf({})),
   });
-  const cardJSON = await listResponse.json();
+  const cardJSON = await cardResponse.json();
   return cardJSON.card;
 };

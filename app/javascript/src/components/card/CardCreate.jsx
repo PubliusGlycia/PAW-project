@@ -18,8 +18,8 @@ export default class CardCreate extends React.Component {
 
   handleSubmit = async e =>{
     e.preventDefault();
-    const board_id = this.props.board_id
-    const list_id = this.props.list_id
+    const board_id = this.props.board_id;
+    const list_id = this.props.list_id;
     const newCard = await addCard(board_id, list_id, this.state.title);
     this.props.onSubmit(newCard);
     this.setState({  
@@ -37,7 +37,7 @@ export default class CardCreate extends React.Component {
               name="title" 
               id="title" 
               className="form-control"
-              placeholder="Title"
+              placeholder="Add Card"
               value={this.state.title}
               onChange={this.handleChangeTitle}
               required

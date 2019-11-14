@@ -8,7 +8,7 @@ export default class CardIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      cards: [],
+      cards: []
     }
   }
 
@@ -32,7 +32,7 @@ export default class CardIndex extends React.Component {
   updateCard = (updatedCard) => {
     this.setState({
       cards: this.state.cards.map(card =>
-        card.id === updatedCard.id ? updatedCard : card
+        card.id === updatedCard_id ? updatedCard : card
       ),
     });
   }
@@ -53,16 +53,17 @@ export default class CardIndex extends React.Component {
       <div className="m-2">
 		    <Col>
           <div className="m-2" style={cardColomnStyle}>
-            <CardCreate 
-		          list_id={this.props.list_id}
+            {/* <CardCreate 
+		          list_id={this.props.list.list_id}
 		      	  onSubmit={this.addCardToList}
-		        />
+		        /> */}
 		      </div>
         
 	  		  {this.props.cards.map((card, i) => (
 		     	  <div className="m-2" style={cardColomnStyle} key={i}>
 	            <CardShow 
-			          card={card}
+                card={card}
+                board_id={this.props.board_id}
 			          list_id={this.props.list_id}
                 updateCard={this.updateCard}
                 deleteCard={this.deleteCard}
