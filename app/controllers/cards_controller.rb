@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CardsController < ApplicationController
-  # before_action :set_card, only: %i[update destroy]
+  before_action :set_card, only: %i[update destroy]
   def index
     @list = List.find(params[:list_id])
     @cards = @list.cards.order(created_at: :desc)
