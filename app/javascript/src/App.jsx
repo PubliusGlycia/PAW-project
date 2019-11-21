@@ -11,7 +11,6 @@ export default class App extends Component {
       <div>
         
         <Nav />
-
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/boards" component={BoardIndex} />
