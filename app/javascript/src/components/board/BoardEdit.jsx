@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
-import { updateBoard } from '../APIs/boards';
+import { updateBoard } from '../../APIs/boards';
 
 export default class BoardEdit extends React.Component {
   constructor(props) {

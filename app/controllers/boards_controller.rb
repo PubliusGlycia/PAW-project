@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 class BoardsController < ApplicationController
-  before_action :set_board, only: %i[destroy update]
+
+  before_action :set_board, only: %i[destroy update show]
   before_action :authenticate_user!, except: [:show, :index]
   def index
     @boards = Board.all.order(created_at: :desc)
@@ -10,8 +13,6 @@ class BoardsController < ApplicationController
     end
   end
 
-  def new; end
-  
   def create
     board = Board.create(board_params)
     board.user = current_user
@@ -22,12 +23,22 @@ class BoardsController < ApplicationController
     end
   end
 
+  def show
+    respond_to do |format|
+      format.html do
+        render :index
+      end
+      format.json do
+        render json: @board
+      end
+    end
+  end
 
   def update
     @board.update(board_params)
     render json: @board
   end
-  
+
   def destroy
     @board.destroy
     render json: @board
