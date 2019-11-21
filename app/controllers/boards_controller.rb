@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: %i[destroy update]
-
+  before_action :authenticate_user!, except: [:show, :index]
   def index
     @boards = Board.all.order(created_at: :desc)
     respond_to do |format|
@@ -14,6 +14,7 @@ class BoardsController < ApplicationController
   
   def create
     board = Board.create(board_params)
+    board.user = current_user
     respond_to do |format|
       format.json do
         render json: board
