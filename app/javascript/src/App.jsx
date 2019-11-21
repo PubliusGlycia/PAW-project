@@ -12,7 +12,7 @@ export default class App extends Component {
         
         <Nav />
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/pages" component={Home} />
           <Route exact path="/boards" component={BoardIndex} />
           <Route path="/boards/:id" component={BoardShow} />
         </Switch>
