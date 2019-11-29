@@ -69,7 +69,6 @@ export default class ListIndex extends React.Component {
             	onSubmit={this.addListToList}
             />
 		      </div>
-
 			  </Row>
 		  </div>
 	  )
