@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import ListEdit from './ListEdit';
-import ListDelete from './ListDelete';
-import CardIndex from '../card/CardIndex';
-import { fetchCards } from '../../APIs/cards';
+import React, { Component } from 'react'
+import ListEdit from './ListEdit'
+import ListDelete from './ListDelete'
+import CardCreate from '../card/CardCreate'
+import CardIndex from '../card/CardIndex'
+import { fetchCards } from '../../APIs/cards'
 
 export default class ListShow extends React.Component {
   constructor(props) {
@@ -32,13 +33,6 @@ export default class ListShow extends React.Component {
     await this.refreshCards();
   }
 
-  addCardToList = (newCard) => {
-    console.log("addCard")
-    this.setState({
-       cards : [newCard, ...this.state.cards],
-    })
-  }
-
   refreshCards = async () => {
     const board_id = this.props.board_id 
     const list_id = this.props.list.id
@@ -48,22 +42,6 @@ export default class ListShow extends React.Component {
     }); 
   }
 
-  updateCard = (updatedCard) => {
-    console.log("updateCard")
-    this.setState({
-      cards: this.state.cards.map(card =>
-        card.id == updatedCard.id ? updatedCard : card
-      ),
-    });
-  }
-
-  deleteCard = (cardToDelete) => {
-    console.log("deleteCard")
-    this.setState({
-      cards: this.state.cards.filter(card => cardToDelete.id !== card.id)
-    });
-  }
-
 	render() {
 
     const listStyle = {
@@ -71,7 +49,7 @@ export default class ListShow extends React.Component {
       borderRadius: '3px'
     };
 
-    const list = this.props.list.id;
+    const list = this.props.list;
 
 	  return (
 	  	<div className="col-12 p-3" style={listStyle}>
@@ -96,13 +74,15 @@ export default class ListShow extends React.Component {
 	      	</div>
         </div>
         <div>
+          <CardCreate 
+              list_id={this.props.list.id}
+              board_id={this.props.board_id}
+		      	  onSubmit={this.addCardToList}
+		        />
           <CardIndex 
             list_id={this.props.list.id}
             board_id={this.props.board_id}
             cards={this.state.cards}
-            deleteCard={this.deleteCard}
-            addCardToList={this.addCardToList}
-            updateCard={this.updateCard}
           />
         </div>
 		  </div>

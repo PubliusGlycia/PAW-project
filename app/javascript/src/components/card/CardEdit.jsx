@@ -10,9 +10,9 @@ export default class CardEdit extends React.Component {
   };
 
   handleSubmit = async e =>{
-    const {board_id, list_id, card_id} = this.props;
+    const {board_id, list_id, card} = this.props
     e.preventDefault();
-    const updatedCard = await updateCard(board_id, list_id, card_id, this.state.title);
+    const updatedCard = await updateCard(board_id, list_id, card.id, this.state.title);
     this.props.updateCard(updatedCard);
     this.props.toggleEdit();
   }
