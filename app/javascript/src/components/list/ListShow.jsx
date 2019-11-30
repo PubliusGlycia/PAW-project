@@ -32,6 +32,13 @@ export default class ListShow extends React.Component {
     await this.refreshCards();
   }
 
+  addCardToList = (newCard) => {
+    console.log("addCard")
+    this.setState({
+       cards : [newCard, ...this.state.cards],
+    })
+  }
+
   refreshCards = async () => {
     const board_id = this.props.board_id 
     const list_id = this.props.list.id
@@ -39,6 +46,22 @@ export default class ListShow extends React.Component {
     this.setState({
       cards,
     }); 
+  }
+
+  updateCard = (updatedCard) => {
+    console.log("updateCard")
+    this.setState({
+      cards: this.state.cards.map(card =>
+        card.id == updatedCard.id ? updatedCard : card
+      ),
+    });
+  }
+
+  deleteCard = (cardToDelete) => {
+    console.log("deleteCard")
+    this.setState({
+      cards: this.state.cards.filter(card => cardToDelete.id !== card.id)
+    });
   }
 
 	render() {
@@ -77,6 +100,9 @@ export default class ListShow extends React.Component {
             list_id={this.props.list.id}
             board_id={this.props.board_id}
             cards={this.state.cards}
+            deleteCard={this.deleteCard}
+            addCardToList={this.addCardToList}
+            updateCard={this.updateCard}
           />
         </div>
 		  </div>

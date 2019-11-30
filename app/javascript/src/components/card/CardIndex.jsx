@@ -8,47 +8,46 @@ export default class CardIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      cards: []
+      comments: []
     }
   }
 
-  addCardToList = (newCard) => {
-    console.log("addCard")
-    this.setState({
-       cards : [newCard, ...this.state.cards],
-    })
-  }
+  // addCardToList = (newCard) => {
+  //   console.log("addCard")
+  //   this.setState({
+  //      cards : [newCard, ...this.state.cards],
+  //   })
+  // }
 
-  updateCard = (updatedCard) => {
-    console.log("updateCard")
-    this.setState({
-      cards: this.state.cards.map(card =>
-        card.id === updatedCard.id ? updatedCard : card
-      ),
-    });
+  // updateCard = (updatedCard) => {
+  //   console.log("updateCard")
+  //   this.setState({
+  //     cards: this.state.cards.map(card =>
+  //       card.id == updatedCard.id ? updatedCard : card
+  //     ),
+  //   });
+  // }
 
-  }
+  // deleteCard = (cardToDelete) => {
+  //   console.log("deleteCard")
+  //   this.setState({
+  //     cards: this.props.cards.filter(card => cardToDelete.id !== card.id)
+  //   });
+  // }
 
-  deleteCard = (cardToDelete) => {
-    console.log("deleteCard")
-    this.setState({
-      cards: this.state.cards.filter(card => cardToDelete.id !== card.id)
-    });
-  }
-
-  componentDidMount = async () => {
-		await this.refreshCards();
-	  }
+  // componentDidMount = async () => {
+	// 	await this.refreshCards();
+	//   }
 	
-	refreshCards = async () => {
-    console.log("refreshCards")
-		const board_id = this.props.board_id 
-		const list_id = this.props.list_id
-		const cards = await fetchCards(board_id, list_id);
-		this.setState({
-		  cards
-		}); 
-	  }
+	// refreshCards = async () => {
+  //   console.log("refreshCards")
+	// 	const board_id = this.props.board_id 
+	// 	const list_id = this.props.list_id
+	// 	const cards = await fetchCards(board_id, list_id);
+	// 	this.setState({
+  //     cards
+	// 	}); 
+	//   }
 
 	render() {
 		
@@ -63,11 +62,11 @@ export default class CardIndex extends React.Component {
 	  		  {this.props.cards.map((card, i) => (
 		     	  <div className="m-2" style={cardColomnStyle} key={i}>
 	            <CardShow 
-                card={card}
+                card={this.props.card}
                 board_id={this.props.board_id}
 			          list_id={this.props.list_id}
-                updateCard={this.updateCard}
-                deleteCard={this.deleteCard}
+                updateCard={this.props.updateCard}
+                deleteCard={this.props.deleteCard}
               />
 			      </div>
 			    ))}
@@ -76,7 +75,7 @@ export default class CardIndex extends React.Component {
             <CardCreate
               board_id={this.props.board_id}
 		          list_id={this.props.list_id}
-		      	  onSubmit={this.addCardToList}
+		      	  onSubmit={this.props.addCardToList}
 		        />
 		      </div>
 		    </Col>
