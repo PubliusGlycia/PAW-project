@@ -51,7 +51,7 @@ export default class CardEdit extends React.Component {
 	  		<div>
 			  	<div>
 				  	<button className="btn btn-info" onClick={this.props.toggleEdit}>
-				  		Edit
+				  		...
 				  	</button>
 				  </div>
 	  		</div>

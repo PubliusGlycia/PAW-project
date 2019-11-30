@@ -16,6 +16,7 @@ export default class CardIndex extends React.Component {
 		
 		const cardColomnStyle = {
 			minWidth: '17em',
+			maxWidth: '17em',
 		}
 
 	  return (

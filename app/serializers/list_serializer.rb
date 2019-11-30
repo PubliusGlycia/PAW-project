@@ -3,4 +3,5 @@ class ListSerializer < ActiveModel::Serializer
   
     belongs_to :board, serializer: BoardSerializer
     has_many :cards, serializer: CardSerializer
+    
 end
