@@ -67,8 +67,8 @@ export default class CardShow extends React.Component {
 		
 
 	  return (
-		<div className="col-10 p-2" style={cardStyle}>
-		<div className="d-flex justify-content-between">
+		<div className="col-10 p-2" style={cardStyle} color='danger' onClick={this.toggle}>{this.props.buttonLabel}
+		<div className="d-flex justify-content-between" color='danger' onClick={this.toggle}>{this.props.buttonLabel}
 		
 			<div>
 			{this.cardTitle()}
@@ -78,7 +78,7 @@ export default class CardShow extends React.Component {
           rel='stylesheet'
           href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'
         />
-        <Button color='danger' onClick={this.toggle}>{this.props.buttonLabel}</Button>
+       
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>
