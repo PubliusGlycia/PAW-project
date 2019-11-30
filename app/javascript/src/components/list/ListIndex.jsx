@@ -28,7 +28,7 @@ export default class ListIndex extends React.Component {
       lists
     }); 
   }
-
+ 
   updateList = (updatedList) => {
     this.setState({
       lists: this.state.lists.map(list =>
@@ -69,7 +69,6 @@ export default class ListIndex extends React.Component {
             	onSubmit={this.addListToList}
             />
 		      </div>
-
 			  </Row>
 		  </div>
 	  )

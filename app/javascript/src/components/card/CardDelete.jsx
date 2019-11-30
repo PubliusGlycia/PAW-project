@@ -5,8 +5,8 @@ import { Button } from 'reactstrap';
 export default class CardDelete extends React.Component {
 
   handleClick = async () => {
-    const { board_id, list_id, card } = this.props;
-    const cardToDelete = await removeCard(board_id, list_id, card.id);
+    const { board_id, list_id, card_id } = this.props;
+    const cardToDelete = await removeCard(board_id, list_id, card_id);
     this.props.deleteCard(cardToDelete); 
   };
 
