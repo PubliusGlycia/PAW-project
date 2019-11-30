@@ -3,19 +3,20 @@
 class BoardsController < ApplicationController
 
   before_action :set_board, only: %i[destroy update show]
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!
+  
   def index
-    @boards = Board.all.order(created_at: :desc)
-    respond_to do |format|
-      format.json do
-        render json: @boards
-      end
-    end
+      @boards = current_user.boards.order(created_at: :desc)
+        respond_to do |format|
+          format.json do
+            render json: @boards
+          end
+        end
   end
 
   def create
     board = Board.create(board_params)
-    board.user = current_user
+    board.user_id = current_user.id
     respond_to do |format|
       format.json do
         render json: board
@@ -24,14 +25,14 @@ class BoardsController < ApplicationController
   end
 
   def show
-    respond_to do |format|
-      format.html do
-        render :index
+      respond_to do |format|
+        format.html do
+          render :index
+        end
+        format.json do
+          render json: @board
+        end
       end
-      format.json do
-        render json: @board
-      end
-    end
   end
 
   def update
@@ -47,7 +48,7 @@ class BoardsController < ApplicationController
   private
 
   def board_params
-    params.require(:board).permit(:title)
+    params.require(:board).permit(:title, :user_id)
   end
 
   def set_board

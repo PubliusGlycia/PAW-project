@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ef30509-172a-4996-88d2-4a8f9bf39757" name="Default Changelist" comment="" />
+    <list default="true" id="6ef30509-172a-4996-88d2-4a8f9bf39757" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/controllers/boards_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/boards_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/board.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/board.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,6 +143,7 @@
       <option name="presentableId" value="Default" />
       <updated>1573115158212</updated>
       <workItem from="1573115159407" duration="166000" />
+      <workItem from="1575128802847" duration="3000" />
     </task>
     <servers />
   </component>
