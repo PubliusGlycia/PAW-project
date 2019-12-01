@@ -12,6 +12,37 @@ export default class CardIndex extends React.Component {
     }
   }
 
+  addCardToList = (newCard) => {
+    this.setState({
+       cards : [newCard, ...this.state.cards],
+    })
+  }
+
+  componentDidMount = async () => {
+    await this.refreshCards();
+  }
+
+  refreshCards = async () => {
+    const cards = await fetchCards(this.props.list_id);
+    this.setState({
+      cards
+    }); 
+  }
+
+  updateCard = (updatedCard) => {
+    this.setState({
+      cards: this.state.cards.map(card =>
+        card.id === updatedCard_id ? updatedCard : card
+      ),
+    });
+  }
+
+  deleteCard = (cardToDelete) => {
+    this.setState({
+      cards: this.state.cards.filter(card => cardToDelete.id !== card.id)
+    });
+  }
+
 	render() {
 		
 		const cardColomnStyle = {
@@ -21,6 +52,12 @@ export default class CardIndex extends React.Component {
 	  return (
       <div className="m-2">
 		    <Col>
+          <div className="m-2" style={cardColomnStyle}>
+            {/* <CardCreate 
+		          list_id={this.props.list.list_id}
+		      	  onSubmit={this.addCardToList}
+		        /> */}
+		      </div>
         
 	  		  {this.props.cards.map((card, i) => (
 		     	  <div className="m-2" style={cardColomnStyle} key={i}>
@@ -28,19 +65,11 @@ export default class CardIndex extends React.Component {
                 card={card}
                 board_id={this.props.board_id}
 			          list_id={this.props.list_id}
-                updateCard={this.props.updateCard}
-                deleteCard={this.props.deleteCard}
+                updateCard={this.updateCard}
+                deleteCard={this.deleteCard}
               />
 			      </div>
 			    ))}
-
-          <div className="m-2" style={cardColomnStyle}>
-            <CardCreate
-              board_id={this.props.board_id}
-		          list_id={this.props.list_id}
-		      	  onSubmit={this.props.addCardToList}
-		        />
-		      </div>
 		    </Col>
     </div>
 	  )

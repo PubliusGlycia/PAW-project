@@ -72,7 +72,7 @@ export default class CardShow extends React.Component {
 				list_id={this.props.list_id}
 				card_id={this.props.card_id}
 				card={card}
-				deleteCard={this.props.deleteCard}
+				deleteCard={this.props.card.deleteCard}
 	  		/>
 		</div>
   		</div>
