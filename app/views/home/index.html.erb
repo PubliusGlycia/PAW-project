@@ -7,4 +7,6 @@
 <% else %>
     <%= link_to 'Sign up', new_user_registration_path %>
     <%= link_to 'Sign in', new_user_session_path %>
+    <%= link_to 'Log in with Gmail',
+      user_google_oauth2_omniauth_authorize_path %>
 <% end %>
