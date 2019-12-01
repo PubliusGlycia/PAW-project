@@ -54,3 +54,22 @@ export const removeList = async (board_id, id) => {
   const listJSON = await listResponse.json();
   return listJSON.list;
 };
+
+export const sort = (
+  droppableIdStart,
+  droppableIdEnd,
+  droppableIndexStart,
+  droppableIndexEnd,
+  draggableId    
+  ) => {
+    return{
+      type: sortList,
+      payload: {
+        droppableIdStart,
+        droppableIdEnd,
+        droppableIndexStart,
+        droppableIndexEnd,
+        draggableId
+      }
+    }
+  }

@@ -11,7 +11,7 @@ export default class ListIndex extends React.Component {
       lists: [],
     }
   }
-
+  
   addListToList = (newList) => {
     this.setState({
        lists : [newList, ...this.state.lists],

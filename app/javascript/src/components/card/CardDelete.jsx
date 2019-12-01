@@ -18,9 +18,9 @@ export default class CardDelete extends React.Component {
 	        window.confirm("Are you sure you wish to delete this card?") &&
 	        this.handleClick(e)
 	    	}
-        className="ml-1"
+        className="ml-2"
       >
-        X
+        Delete
       </Button>
     );
   }

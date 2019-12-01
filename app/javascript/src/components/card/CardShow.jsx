@@ -5,7 +5,7 @@ import CardCreate from '../card/CardCreate'
 import CardIndex from '../card/CardIndex'
 import { fetchCards } from '../../APIs/cards'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';  
-
+import { Draggable } from "react-beautiful-dnd"
 
 
 export default class CardShow extends React.Component {
@@ -63,11 +63,13 @@ export default class CardShow extends React.Component {
 		  };
 
 		  const card = this.props.card;
-
 		
 
 	  return (
-		<div className="col-10 p-2" style={cardStyle} color='danger' onClick={this.toggle}>{this.props.buttonLabel}
+		  <Draggable draggableId={String(this.props.card.id)} index={this.props.list_id}>
+		  {provided => (
+			<div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>  
+			  <div className="col-10 p-2" style={cardStyle} color='danger' onClick={this.toggle}>{this.props.buttonLabel}
 		<div className="d-flex justify-content-between" color='danger' onClick={this.toggle}>{this.props.buttonLabel}
 		
 			<div>
@@ -106,11 +108,14 @@ export default class CardShow extends React.Component {
 				list_id={this.props.list_id}
 				card_id={this.props.card_id}
 				card={card}
-				deleteCard={this.props.card.deleteCard}
+				deleteCard={this.props.deleteCard}
 	  		/>
 		</div>
   		</div>
-		</div>  
+		</div>
+		</div>
+		  )}
+		</Draggable>
 	  );
 	}
 }
