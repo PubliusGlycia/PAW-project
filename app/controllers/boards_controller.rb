@@ -6,7 +6,7 @@ class BoardsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @boards = current_user.boards.order("RANDOM()").first(1)
+    @boards = Board.all.order(created_at: :desc)
         respond_to do |format|
           format.json do
             render json: @boards
@@ -16,7 +16,7 @@ class BoardsController < ApplicationController
 
   def create
     board = Board.create(board_params)
-    board.user_id = current_user.id
+    #board.user_id = current_user.id
     respond_to do |format|
       format.json do
         render json: board
