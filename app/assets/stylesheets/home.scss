@@ -1,3 +1,17 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+h1{
+    color: antiquewhite;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body{
+    background: url(asset-path('bimg.jpg')) no-repeat;
+    text-align: center;
+}
+
+.main{
+    text-align: center;
+}
