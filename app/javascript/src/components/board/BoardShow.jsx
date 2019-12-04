@@ -6,25 +6,26 @@ import { sort } from '../../APIs/lists'
 
 export default class BoardShow extends React.Component {
 
-  onDragEnd = (result) => {
-      //reordering logic
-    const {destination, source, draggableId} = result;
+	onDragEnd(){}
+//   onDragEnd = (result) => {
+//       //reordering logic
+//     const {destination, source, draggableId} = result;
 
-    if(!destination){
-      return;
-    }
+//     if(!destination){
+//       return;
+//     }
     
-    this.props.dispatch(
-      sort(
-        source.droppableId,
-        destination.droppableId,
-        source.index,
-        destination.index,
-        draggableId
-      )
-    )
+//     this.props.dispatch(
+//       sort(
+//         source.droppableId,
+//         destination.droppableId,
+//         source.index,
+//         destination.index,
+//         draggableId
+//       )
+//     )
 
-  }
+//   }
 
 	render() {
 
