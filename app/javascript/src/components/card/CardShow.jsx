@@ -18,11 +18,20 @@ export default class CardShow extends React.Component {
 		this.toggle = this.toggle.bind(this);
 	  }
 
-	  cardTitle = () => {
+	cardTitle = () => {
 		const editable = this.state.editable;
 		if (editable === false ) {
 			return (
 				  this.props.card.title
+			  )
+		}
+    }
+ 
+	cardDescription = () => {
+		const editable = this.state.editable;
+		if (editable === false ) {
+			return (
+				  this.props.card.description
 			  )
 		}
 	}
@@ -82,10 +91,13 @@ export default class CardShow extends React.Component {
         />
        
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <ModalHeader toggle={this.toggle}>
+		  <b>{this.cardTitle()}</b>
+		  </ModalHeader>
           <ModalBody>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </ModalBody>
+		  	<b>Description:</b>
+		  	<p>{"\n" + this.cardDescription()}</p>
+		  </ModalBody>
           <ModalFooter>
             <Button color='primary' onClick={this.toggle}>Do Something</Button>{' '}
             <Button color='secondary' onClick={this.toggle}>Cancel</Button>
@@ -119,4 +131,3 @@ export default class CardShow extends React.Component {
 	  );
 	}
 }
-

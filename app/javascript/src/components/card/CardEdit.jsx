@@ -5,14 +5,20 @@ export default class CardEdit extends React.Component {
 
   handleChangeTitle = (e) => {
     this.setState({
-      title: e.target.value,
+      title: e.target.value
     });
   };
+
+  handleChangeDescription = (e) => {
+    this.setState({
+      description: e.target.value
+    });
+  }
 
   handleSubmit = async e =>{
     const {board_id, list_id, card} = this.props
     e.preventDefault();
-    const updatedCard = await updateCard(board_id, list_id, card.id, this.state.title);
+    const updatedCard = await updateCard(board_id, list_id, card.id, this.state.title, this.state.description);
     this.props.updateCard(updatedCard);
     this.props.toggleEdit();
   }
@@ -32,6 +38,15 @@ export default class CardEdit extends React.Component {
                 className="form-control"
                 placeholder={this.props.card.title}
                 onChange={this.handleChangeTitle}
+              />
+              </label>
+              <label htmlFor="Description">
+              <input type="text" 
+                name="description" 
+                id="description" 
+                className="form-control"
+                placeholder={this.props.card.description}
+                onChange={this.handleChangeDescription}
               />
               </label>
               <input type="submit"

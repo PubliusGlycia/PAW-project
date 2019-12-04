@@ -16,27 +16,27 @@ export const fetchCards = async (board_id, list_id) => {
   return cardsJSON.cards;
 };
 
-export const addCard = async (board_id, list_id, title) => {
+export const addCard = async (board_id, list_id, title, description) => {
   const cardResponse = await fetch(`/boards/${board_id}/lists/${list_id}/cards`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
         },
-        body: JSON.stringify(addCsrf({card: { title, list_id } })),
+        body: JSON.stringify(addCsrf({card: { title, description, list_id } })),
     });
   const cardJSON = await cardResponse.json();
   return cardJSON.card;
 };
 
-export const updateCard = async (board_id, list_id, id, title) => {
+export const updateCard = async (board_id, list_id, id, title, description) => {
   const cardResponse = await fetch(`/boards/${board_id}/lists/${list_id}/cards/${id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-    body: JSON.stringify(addCsrf({ card: { title } })),
+    body: JSON.stringify(addCsrf({ card: { title, description } })),
   });
   const cardJSON = await cardResponse.json();
   return cardJSON.card;
