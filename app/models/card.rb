@@ -3,7 +3,7 @@ class Card < ApplicationRecord
 
   validate :file_size_have_to_be_less_than_5mb, on: :create
 
-  has_many_attached:image
+  has_many_attached :images
 
   def file_size_have_to_be_less_than_5mb
     return false unless images.attached?
