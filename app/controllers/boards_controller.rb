@@ -15,7 +15,8 @@ class BoardsController < ApplicationController
 
   def create
     board = Board.create(board_params)
-    # board.user = current_user
+    # board.user_id = current_user.id
+    # board.update_attributes(params[:board])
     respond_to do |format|
       format.json do
         render json: board

@@ -14,6 +14,7 @@ class CardsController < ApplicationController
 
   def create
     card = Card.create(card_params)
+    card.images.attach(params[:image]) if params[:image]
     respond_to do |format|
       format.json do
         render json: card
@@ -35,6 +36,12 @@ class CardsController < ApplicationController
     @image = ActiveStorage::Blob.find_signed(params[:id])
     @image.attachments.first.purge
     redirect_to collections_url
+  end
+
+  def archive_cards
+    @card = PostEvent.where(id: params[:card_params_ids])
+    @card.update_all(archive: true)
+    head :ok
   end
 
   private
