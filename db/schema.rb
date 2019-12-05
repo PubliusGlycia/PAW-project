@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2019_12_05_115735) do
     t.datetime "updated_at", null: false
     t.string "description"
     t.boolean "archive", default: false
+    t.boolean "isArchived"
     t.index ["list_id"], name: "index_cards_on_list_id"
   end
 
@@ -86,4 +87,6 @@ ActiveRecord::Schema.define(version: 2019_12_05_115735) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cards", "lists"
+  add_foreign_key "lists", "boards"
 end
