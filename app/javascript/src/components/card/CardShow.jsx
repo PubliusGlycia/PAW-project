@@ -9,6 +9,7 @@ import { fetchCards } from '../../APIs/cards'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';  
 import { Draggable } from "react-beautiful-dnd"
 import { Container, Row, Col } from 'reactstrap';
+import CardBadge from './CardBadge'
 
 
 
@@ -152,6 +153,7 @@ export default class CardShow extends React.Component {
 		<div className="d-flex">
 		</div>
   		</div>
+		  <CardBadge/>
 		</div>
 		</div>
 		  )}
