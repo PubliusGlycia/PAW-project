@@ -38,6 +38,12 @@ class CardsController < ApplicationController
     redirect_to collections_url
   end
 
+  def archive_cards
+    @card = PostEvent.where(id: params[:card_params_ids])
+    @card.update_all(archive: true)
+    head :ok
+  end
+
   private
 
   def card_params
