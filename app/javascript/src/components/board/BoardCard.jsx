@@ -30,7 +30,6 @@ export default class BoardCard extends React.Component {
   };
 
   render () {
-
     const board = this.props.board
 
     const boardTo = { 
@@ -45,7 +44,7 @@ export default class BoardCard extends React.Component {
             className="shadow p-3 mb-5 bg-white rounded"
           >
 
-            <CardTitle className="font-weight-bold text-capitalize">
+            <CardTitle className="font-weight-bold text-capitalize" >
               { this.printBoardTitle(board.title) }
             </CardTitle>
 

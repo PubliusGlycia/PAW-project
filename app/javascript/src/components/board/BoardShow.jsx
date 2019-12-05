@@ -28,6 +28,10 @@ export default class BoardShow extends React.Component {
 //   }
 
 	render() {
+    
+    const styles= {
+      color: 'white',
+    };
 
   	const title = this.props.location.state.title
   	const board_id = this.props.match.params.id
@@ -36,7 +40,7 @@ export default class BoardShow extends React.Component {
       <DragDropContext onDragEnd={this.onDragEnd()}>
       <div>
         <div className="m-3 w-100">
-            <h3>{title}</h3>
+            <h3 style={styles}>{title}</h3>
             <div>
                 <ListIndex 
                   board_id={board_id}
