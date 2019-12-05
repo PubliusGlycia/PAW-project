@@ -37,7 +37,7 @@ export default class BoardCreate extends React.Component {
   render () {
     if (this.state.toggle === false) {
       return (
-        <Button outline color="primary" onClick={this.toggleCreateForm}> 
+        <Button color="primary" onClick={this.toggleCreateForm}> 
           Create a new board
         </Button>
       )
