@@ -19,21 +19,31 @@ export default class CardShow extends React.Component {
 	  }
 
 	cardTitle = () => {
-		const editable = this.state.editable;
-		if (editable === false ) {
+		// const editable = this.state.editable;
+		// if (editable === false ) {
 			return (
 				  this.props.card.title
 			  )
-		}
+		// }
+			
+		
     }
  
 	cardDescription = () => {
-		const editable = this.state.editable;
-		if (editable === false ) {
+		// const editable = this.state.editable;
+		// if (editable === false ) {
+			if(this.props.card.description === undefined || this.props.card.description === null){
+				return ''
+			}
 			return (
 				  this.props.card.description
 			  )
-		}
+		// }
+		// if(editable === true){
+			// if(this.props.card.description === undefined || this.props.card.description === null){
+				// this.props.card.description = ''
+			// }
+		// }
 	}
 
 	toggle() {
@@ -80,7 +90,7 @@ export default class CardShow extends React.Component {
 			<div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>  
 			  <div className="col-10 p-2" style={cardStyle} color='danger' onClick={this.toggle}>{this.props.buttonLabel}
 		<div className="d-flex justify-content-between" color='danger' onClick={this.toggle}>{this.props.buttonLabel}
-		
+	
 			<div>
 			{this.cardTitle()}
 			</div>
@@ -99,13 +109,7 @@ export default class CardShow extends React.Component {
 		  	<p>{"\n" + this.cardDescription()}</p>
 		  </ModalBody>
           <ModalFooter>
-            <Button color='primary' onClick={this.toggle}>Do Something</Button>{' '}
-            <Button color='secondary' onClick={this.toggle}>Cancel</Button>
-          </ModalFooter>
-        </Modal>
-      </div>
-		<div className="d-flex">
-			<CardEdit 
+            <CardEdit 
 				card={card}
 				card_id={this.props.card_id}
 				board_id={this.props.board_id}
@@ -114,7 +118,6 @@ export default class CardShow extends React.Component {
 				toggleEdit={this.toggleEdit}
 				updateCard={this.props.updateCard}
 			/>
-
 			<CardDelete
 				board_id={this.props.board_id}
 				list_id={this.props.list_id}
@@ -122,6 +125,11 @@ export default class CardShow extends React.Component {
 				card={card}
 				deleteCard={this.props.deleteCard}
 	  		/>
+			<Button color='secondary' onClick={this.toggle}>Cancel</Button>
+          </ModalFooter>
+        </Modal>
+      </div>
+		<div className="d-flex">
 		</div>
   		</div>
 		</div>

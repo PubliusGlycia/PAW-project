@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { updateCard } from '../../APIs/cards';
+import { Button } from 'reactstrap';
 
 export default class CardEdit extends React.Component {
 
@@ -14,6 +15,17 @@ export default class CardEdit extends React.Component {
       description: e.target.value
     });
   }
+
+  cardDescription = () => {
+			if(this.props.card.description === undefined || this.props.card.description === null){
+				return ''
+			}else{
+			  return (
+				  this.props.card.description
+			  )
+      }
+	}
+	
 
   handleSubmit = async e =>{
     const {board_id, list_id, card} = this.props
@@ -36,7 +48,7 @@ export default class CardEdit extends React.Component {
                 name="title" 
                 id="title" 
                 className="form-control"
-                placeholder={this.props.card.title}
+                placeholder='Title'
                 onChange={this.handleChangeTitle}
               />
               </label>
@@ -45,7 +57,7 @@ export default class CardEdit extends React.Component {
                 name="description" 
                 id="description" 
                 className="form-control"
-                placeholder={this.props.card.description}
+                placeholder='Description'
                 onChange={this.handleChangeDescription}
               />
               </label>
@@ -54,19 +66,19 @@ export default class CardEdit extends React.Component {
                 className="btn btn-success"
                 required
               />
+              <Button color="warning" onClick={this.props.toggleEdit}>
+			  		    Cancel
+			  	    </Button>
             </form>
-	      	</div>
-      		<button onClick={this.props.toggleEdit}>
-			  		Cancel
-			  	</button>
-	      </div>
+          </div>
+        </div>
 	    )
 	  } else {
 	  	return (
 	  		<div>
 			  	<div>
 				  	<button className="btn btn-info" onClick={this.props.toggleEdit}>
-				  		...
+				  		Edit
 				  	</button>
 				  </div>
 	  		</div>

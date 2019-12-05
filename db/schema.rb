@@ -52,15 +52,6 @@ ActiveRecord::Schema.define(version: 2019_12_05_103040) do
     t.index ["list_id"], name: "index_cards_on_list_id"
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.bigint "card_id", null: false
-    t.string "email"
-    t.text "comment"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["card_id"], name: "index_comments_on_card_id"
-  end
-
   create_table "lists", force: :cascade do |t|
     t.bigint "board_id", null: false
     t.string "title", null: false
