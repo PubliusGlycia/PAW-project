@@ -14,6 +14,7 @@ class CardsController < ApplicationController
 
   def create
     card = Card.create(card_params)
+    card.images.attach(params[:image]) if params[:image]
     respond_to do |format|
       format.json do
         render json: card

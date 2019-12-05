@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_11_30_124204) do
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
   end
 
   create_table "cards", force: :cascade do |t|
