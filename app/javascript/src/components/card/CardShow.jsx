@@ -1,11 +1,16 @@
 import React, { Component, useState } from 'react';
+import Sidebar from './Sidebar';
 import CardEdit from './CardEdit'
+import AddComment from './AddComment';
 import CardDelete from './CardDelete'
 import CardCreate from '../card/CardCreate'
 import CardIndex from '../card/CardIndex'
 import { fetchCards, archiveCard } from '../../APIs/cards'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';  
 import { Draggable } from "react-beautiful-dnd"
+import { Container, Row, Col } from 'reactstrap';
+import CardBadge from './CardBadge'
+
 
 
 export default class CardShow extends React.Component {
@@ -111,8 +116,24 @@ export default class CardShow extends React.Component {
 		  <b>{this.cardTitle()}</b>
 		  </ModalHeader>
           <ModalBody>
-		  	<b>Description:</b>
-		  	<p>{"\n" + this.cardDescription()}</p>
+		  	<Container>
+				<Row>
+					<Col>  
+						<Row>
+							<b><h2>Description:</h2></b>
+							<p>{"\n" + this.cardDescription()}</p>
+						</Row>
+
+						<Row>
+							<AddComment/>
+						</Row>
+
+					</Col>
+					<Col>  
+						<Sidebar/>
+					</Col>
+				</Row>
+			</Container>
 		  </ModalBody>
           <ModalFooter>
             <CardEdit 
@@ -144,6 +165,7 @@ export default class CardShow extends React.Component {
 		<div className="d-flex">
 		</div>
   		</div>
+		  <CardBadge/>
 		</div>
 		</div>
 		  )}
