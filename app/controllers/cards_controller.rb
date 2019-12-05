@@ -31,6 +31,12 @@ class CardsController < ApplicationController
     render json: @card
   end
 
+  def delete_image_attachment
+    @image = ActiveStorage::Blob.find_signed(params[:id])
+    @image.attachments.first.purge
+    redirect_to collections_url
+  end
+
   private
 
   def card_params
