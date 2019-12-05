@@ -7,6 +7,7 @@ export default class CardCreate extends React.Component {
     this.state = { 
       title: '',
       description: '',
+      archive: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -26,6 +27,7 @@ export default class CardCreate extends React.Component {
     this.setState({  
      title: '',
      description: '',
+     archive: false,
     });
   }
 

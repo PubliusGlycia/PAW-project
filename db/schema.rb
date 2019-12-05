@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 2019_12_05_115735) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
-    t.boolean "archive", default: false
     t.boolean "isArchived"
+    t.boolean "archive", default: false
     t.index ["list_id"], name: "index_cards_on_list_id"
   end
 
@@ -80,13 +80,9 @@ ActiveRecord::Schema.define(version: 2019_12_05_115735) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
-    t.string "provider"
-    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "cards", "lists"
-  add_foreign_key "lists", "boards"
 end

@@ -3,7 +3,7 @@ import CardEdit from './CardEdit'
 import CardDelete from './CardDelete'
 import CardCreate from '../card/CardCreate'
 import CardIndex from '../card/CardIndex'
-import { fetchCards } from '../../APIs/cards'
+import { fetchCards, archiveCard } from '../../APIs/cards'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';  
 import { Draggable } from "react-beautiful-dnd"
 
@@ -71,9 +71,9 @@ export default class CardShow extends React.Component {
 		}); 
 	  }
 
-	archiveCard = async () => {
+	handleClickArchive = async () => {
     	const { board_id, list_id, card } = this.props;
-		const archive = true;
+		const archive = 'true';
     	const cardToArchive = await archiveCard(board_id, list_id, card.id, archive);
     	this.props.archiveCard(cardToArchive); 
   	};
@@ -132,7 +132,10 @@ export default class CardShow extends React.Component {
 				deleteCard={this.props.deleteCard}
 	  		/>
 			
-			<Button color='warning' onClick={this.archiveCard}>Archive</Button>
+			<Button color='warning' onClick={e =>
+	        window.confirm("Are you sure you wish to archive this card?") &&
+	        this.handleClickArchive(e)}>Archive</Button>
+
 			<Button color='secondary' onClick={this.toggle}>Cancel</Button>
           
 		  </ModalFooter>

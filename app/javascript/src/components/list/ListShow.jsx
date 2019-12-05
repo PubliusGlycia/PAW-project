@@ -43,6 +43,7 @@ addCardToList = (newCard) => {
 
   archiveCard = (cardToArchive) => {
     console.log("archiveCard")
+
     this.setState({
       cards: this.state.cards.filter(
         card => cardToArchive.id !== card.id)
@@ -74,7 +75,9 @@ addCardToList = (newCard) => {
     const cards = await fetchCards(board_id, list_id);
     this.setState({
       cards,
-    }); 
+    });
+
+     
   }
 
 	render() {
