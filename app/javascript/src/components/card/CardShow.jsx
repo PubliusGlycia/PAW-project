@@ -165,7 +165,7 @@ export default class CardShow extends React.Component {
 		<div className="d-flex">
 		</div>
   		</div>
-		  <CardBadge/>
+		  <CardBadge card={card}/>
 		</div>
 		</div>
 		  )}

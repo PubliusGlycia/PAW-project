@@ -30,7 +30,6 @@ addCardToList = (newCard) => {
         card.id === updatedCard.id ? updatedCard : card
       ),
     });
-
   }
 
   deleteCard = (cardToDelete) => {
@@ -46,7 +45,7 @@ addCardToList = (newCard) => {
 
     this.setState({
       cards: this.state.cards.filter(
-        card => cardToArchive.id !== card.id)
+        card => card.archive === true)
     });
   }
 
