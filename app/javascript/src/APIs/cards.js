@@ -54,3 +54,16 @@ export const removeCard = async (board_id, list_id, id) => {
   const cardJSON = await cardResponse.json();
   return cardJSON.card;
 };
+
+export const archiveCard = async (board_id, list_id, id, archive) => {
+  const cardResponse = await fetch(`/boards/${board_id}/lists/${list_id}/cards/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(addCsrf({ card: { archive } })),
+  });
+  const cardJSON = await cardResponse.json();
+  return cardJSON.card;
+};

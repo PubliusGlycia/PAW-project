@@ -15,6 +15,7 @@ export default class ListShow extends React.Component {
     }
   }
 
+state = { showing: true };
 addCardToList = (newCard) => {
     console.log("addCard")
     this.setState({
@@ -35,7 +36,16 @@ addCardToList = (newCard) => {
   deleteCard = (cardToDelete) => {
     console.log("deleteCard")
     this.setState({
-      cards: this.state.cards.filter(card => cardToDelete.id !== card.id)
+      cards: this.state.cards.filter(
+        card => cardToDelete.id !== card.id)
+    });
+  }
+
+  archiveCard = (cardToArchive) => {
+    console.log("archiveCard")
+    this.setState({
+      cards: this.state.cards.filter(
+        card => cardToArchive.id !== card.id)
     });
   }
 
@@ -108,6 +118,7 @@ addCardToList = (newCard) => {
             updateCard={this.updateCard}
             deleteCard={this.deleteCard}
             addCardToList={this.addCardToList}
+            archiveCard={this.archiveCard}
           />
         </div>
         {provided.placeholder}

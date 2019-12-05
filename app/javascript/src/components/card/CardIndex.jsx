@@ -30,6 +30,7 @@ export default class CardIndex extends React.Component {
 			          list_id={this.props.list_id}
                 updateCard={this.props.updateCard}
                 deleteCard={this.props.deleteCard}
+				archiveCard={this.props.archiveCard}
               />
 			      </div>
 			    ))}

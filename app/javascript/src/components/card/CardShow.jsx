@@ -70,7 +70,13 @@ export default class CardShow extends React.Component {
 		  cards,
 		}); 
 	  }
-	  
+
+	archiveCard = async () => {
+    	const { board_id, list_id, card } = this.props;
+		const archive = true;
+    	const cardToArchive = await archiveCard(board_id, list_id, card.id, archive);
+    	this.props.archiveCard(cardToArchive); 
+  	};
 
 	render() {
 	
@@ -125,8 +131,11 @@ export default class CardShow extends React.Component {
 				card={card}
 				deleteCard={this.props.deleteCard}
 	  		/>
+			
+			<Button color='warning' onClick={this.archiveCard}>Archive</Button>
 			<Button color='secondary' onClick={this.toggle}>Cancel</Button>
-          </ModalFooter>
+          
+		  </ModalFooter>
         </Modal>
       </div>
 		<div className="d-flex">

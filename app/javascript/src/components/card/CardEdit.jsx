@@ -26,6 +26,7 @@ export default class CardEdit extends React.Component {
       }
 	}
 	
+  
 
   handleSubmit = async e =>{
     const {board_id, list_id, card} = this.props
