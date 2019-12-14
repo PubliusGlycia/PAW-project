@@ -25,8 +25,6 @@ export default class CardEdit extends React.Component {
 			  )
       }
 	}
-	
-  
 
   handleSubmit = async e =>{
     const {board_id, list_id, card} = this.props
@@ -40,10 +38,9 @@ export default class CardEdit extends React.Component {
   	if (this.props.editable === true ) {
 	    return (
 	      <div className="d-flex">
+          <hr />
 	      	<div>
-	      		<form 
-              onSubmit={this.handleSubmit}
-            >
+	      		<form onSubmit={this.handleSubmit}>
               <label htmlFor="Title">
               <input type="text" 
                 name="title" 
@@ -52,16 +49,12 @@ export default class CardEdit extends React.Component {
                 placeholder='Title'
                 onChange={this.handleChangeTitle}
               />
-              </label>
+              </label><br />
               <label htmlFor="Description">
-              <input type="text" 
-                name="description" 
-                id="description" 
-                className="form-control"
-                placeholder='Description'
-                onChange={this.handleChangeDescription}
-              />
-              </label>
+              <textarea required="" rows="10" cols="50" placeholder="Write a description..."
+                  name="description" id="description" className="form-control" placeholder='Description'
+                  onChange={this.handleChangeDescription} value={this.cardDescription()}></textarea>
+              </label><br />
               <input type="submit"
                 value="Update"
                 className="btn btn-success"

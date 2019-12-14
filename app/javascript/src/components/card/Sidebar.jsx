@@ -41,21 +41,21 @@ const Sidebar = (props) => {
     <aside className="modal-buttons">
       <h2>Add <Badge color="secondary">New</Badge></h2>
       <ul>
-        <div style={cardColomnStyle}>
+        <div style={cardColomnStyle} style={{float: 'left'}}>
             <Button outline color="primary">Members</Button>
         </div>
 
-        <div style={cardColomnStyle}>
+        <div style={cardColomnStyle} style={{float: 'left'}}>
             <Button outline color="primary">Labels</Button>
         </div>
 
-        <div style={cardColomnStyle}>
+        <div style={cardColomnStyle} style={{float: 'left'}}>
           <Button color="primary" outline>
             CheckList <Badge color="secondary">4</Badge>
           </Button>
         </div>
 
-        <div style={cardColomnStyle}>
+        <div style={cardColomnStyle} style={{float: 'left'}}>
             <Button outline color="primary">Due Date</Button>
         </div>
 
@@ -67,15 +67,15 @@ const Sidebar = (props) => {
       <h2>Actions </h2>
       <ul>
 
-        <div style={cardColomnStyle}>
+        <div style={cardColomnStyle} style={{float: 'left'}}>
             <Button outline color="primary">Attachment</Button>
         </div>
 
-        <div style={cardColomnStyle}>
+        <div style={cardColomnStyle} style={{float: 'left'}}>
             <Button outline color="primary">Move</Button>
         </div>
 
-        <div style={cardColomnStyle}>
+        <div style={cardColomnStyle} style={{float: 'left'}}>
             <Button outline color="primary">Copy</Button>
         </div>
 
