@@ -1,5 +1,6 @@
-<h1>Hello!</h1>
-<div class="main">
+<div id="app-container"></div>
+
+
 <% if current_user %>
     <%= button_to 'Sign out', destroy_user_session_path, 
         method: :delete %>
@@ -8,4 +9,3 @@
     <%= button_to 'Sign up', new_user_registration_path, method: :get %>
     <%= button_to 'Log in', new_user_session_path, method: :get %>
 <% end %>
-</div>
