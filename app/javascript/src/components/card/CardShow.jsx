@@ -1,7 +1,6 @@
 import React, { Component, useState } from 'react';
 import Sidebar from './Sidebar';
 import CardEdit from './CardEdit'
-import AddComment from './AddComment';
 import CardDelete from './CardDelete'
 import CardCreate from '../card/CardCreate'
 import CardIndex from '../card/CardIndex'
@@ -136,7 +135,6 @@ export default class CardShow extends React.Component {
 						</Row>
 						<hr />
 						<Row>
-							<AddComment/>
 						</Row>
 					</Col>
 					<Col>  
