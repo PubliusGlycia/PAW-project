@@ -96,10 +96,10 @@ export default class CardShow extends React.Component {
 		
 
 	  return (
-		  <Draggable draggableId={String(this.props.card.id)} index={this.props.list_id}>
-		  {provided => (
-			<div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>  
-			  <div className="col-10 p-2" style={cardStyle} color='danger' onClick={this.toggle}>{this.props.buttonLabel}
+		//   <Draggable draggableId={String(this.props.card.id)} index={this.props.list_id}>
+		//   {provided => (
+			// <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>  
+			  <div className="col-10 p-2" style={cardStyle} color='danger' onClick={this.toggle}>{this.props.buttonLabel} 
 		<div className="d-flex justify-content-between" color='danger' onClick={this.toggle}>{this.props.buttonLabel}
 	
 			<div>
@@ -140,7 +140,7 @@ export default class CardShow extends React.Component {
 						</Row>
 					</Col>
 					<Col>  
-						<Sidebar/>
+						<Sidebar props={this.props}/>
 					</Col>
 				</Row>
 			</Container>
@@ -169,9 +169,9 @@ export default class CardShow extends React.Component {
   		</div>
 		  <CardBadge card={card}/>
 		</div>
-		</div>
+	
 		  )}
-		</Draggable>
-	  );
-	}
+		// </Draggable>
+	//   );
+	// }
 }

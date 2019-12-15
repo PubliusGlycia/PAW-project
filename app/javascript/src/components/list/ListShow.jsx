@@ -89,9 +89,9 @@ addCardToList = (newCard) => {
     const list = this.props.list;
 
 	  return (
-      <Droppable droppableId={String(this.props.list.id)}>
-      {provided =>(
-        <div {...provided.droppableProps} ref={provided.innerRef} className="col-12 p-3" style={listStyle}>
+      // <Droppable droppableId={String(this.props.list.id)}>
+      // {provided =>(
+        <div /*{...provided.droppableProps} ref={provided.innerRef}*/ className="col-12 p-3" style={listStyle}>
 	  		<div className="d-flex justify-content-between">
 		  		<div>
 	      		{this.listTitle()}
@@ -123,11 +123,12 @@ addCardToList = (newCard) => {
             archiveCard={this.archiveCard}
           />
         </div>
-        {provided.placeholder}
+        
 		  </div>
       )}
-      </Droppable>
-	  )
-	}
-  
+      // </Droppable> 
+	  // )
+
 }
+ // miedzy 2 ostatnimi </div> -> {provided.placeholder}  
+// }
