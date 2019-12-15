@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Badge, Button } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
-
+import CardShow from './CardShow'
 
 const Sidebar = (props) => {
   let archiveOrUnarchive;
@@ -25,7 +25,7 @@ const Sidebar = (props) => {
   } else {
     archiveOrUnarchive = (
       <div style={cardColomnStyle}>
-            <Button outline color="primary">Archive</Button>
+            <Button onClick={props.handleClickArchive} outline color="primary">Archive</Button>
         </div>
     );
   }
@@ -36,8 +36,6 @@ const Sidebar = (props) => {
 
   return (
     
-     
-
     <aside className="modal-buttons">
       <h2>Add <Badge color="secondary">New</Badge></h2>
       <ul>

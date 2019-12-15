@@ -37,7 +37,7 @@ export default class BoardShow extends React.Component {
   	const board_id = this.props.match.params.id
 
 	  return (
-      <DragDropContext onDragEnd={this.onDragEnd()}>
+      // <DragDropContext onDragEnd={this.onDragEnd()}>
       <div>
         <div className="m-3 w-100">
             <h3 style={styles}>{title}</h3>
@@ -48,7 +48,7 @@ export default class BoardShow extends React.Component {
             </div>
         </div>
       </div>
-      </DragDropContext>    
+      //  </DragDropContext>     
 	  );
 	}
 }
