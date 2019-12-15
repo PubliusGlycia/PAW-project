@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Badge, Button } from 'reactstrap';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import CardShow from './CardShow'
-
 const Sidebar = (props) => {
+  const {
+    buttonLabel,
+    className
+  } = props;
+
+  const [modal, setModal] = useState(false);
+  const [nestedModal, setNestedModal] = useState(false);
+  const [closeAll, setCloseAll] = useState(false);
+
+  const toggle = () => setModal(!modal);
+  const toggleNested = () => {
+    setNestedModal(!nestedModal);
+    setCloseAll(false);
+  }
+  const toggleAll = () => {
+    setNestedModal(!nestedModal);
+    setCloseAll(true);
+  }
+
   let archiveOrUnarchive;
   let deleteButton = null;
   if (props.archived) {
@@ -44,7 +62,15 @@ const Sidebar = (props) => {
         </div>
 
         <div style={cardColomnStyle}>
-            <Button outline color="primary">Labels</Button>
+            <Button outline color="primary" onClick={toggleNested}>Labels</Button>
+            <Modal isOpen={nestedModal} toggle={toggleNested} onClosed={closeAll ? toggle : undefined}>
+            <ModalHeader>Nested Modal title</ModalHeader>
+            <ModalBody>Stuff and things</ModalBody>
+            <ModalFooter>
+              <Button color="primary" onClick={toggleNested}>Done</Button>{' '}
+              <Button color="secondary" onClick={toggleAll}>All Done</Button>
+            </ModalFooter>
+          </Modal>
         </div>
 
         <div style={cardColomnStyle}>
