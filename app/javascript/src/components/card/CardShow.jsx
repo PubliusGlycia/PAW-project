@@ -111,23 +111,33 @@ export default class CardShow extends React.Component {
           href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'
         />
        
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} style={{maxWidth: '80%'}}>
           <ModalHeader toggle={this.toggle}>
 		  <b>{this.cardTitle()}</b>
 		  </ModalHeader>
           <ModalBody>
-		  	<Container>
+		  	<Container style={{maxWidth: '95%'}}>
 				<Row>
 					<Col>  
 						<Row>
-							<b><h2>Description:</h2></b>
+							<b><h4>Description:</h4></b><br />
 							<p>{"\n" + this.cardDescription()}</p>
 						</Row>
-
+						<Row>
+							<CardEdit 
+								card={card}
+								card_id={this.props.card_id}
+								board_id={this.props.board_id}
+								list_id={this.props.list_id} 
+								editable={this.state.editable}
+								toggleEdit={this.toggleEdit}
+								updateCard={this.props.updateCard}
+							/>
+						</Row>
+						<hr />
 						<Row>
 							<AddComment/>
 						</Row>
-
 					</Col>
 					<Col>  
 						<Sidebar props={this.props}/>
@@ -136,15 +146,7 @@ export default class CardShow extends React.Component {
 			</Container>
 		  </ModalBody>
           <ModalFooter>
-            <CardEdit 
-				card={card}
-				card_id={this.props.card_id}
-				board_id={this.props.board_id}
-				list_id={this.props.list_id} 
-				editable={this.state.editable}
-				toggleEdit={this.toggleEdit}
-				updateCard={this.props.updateCard}
-			/>
+            
 			<CardDelete
 				board_id={this.props.board_id}
 				list_id={this.props.list_id}
