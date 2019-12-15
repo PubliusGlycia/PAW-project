@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Labels from './Labels';
 import { Badge, Button } from 'reactstrap';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import CardShow from './CardShow'
-
 const Sidebar = (props) => {
+  const {
+    buttonLabel,
+    className
+  } = props;
+
+  const [modal, setModal] = useState(false);
+  const [nestedModal, setNestedModal] = useState(false);
+  const [closeAll, setCloseAll] = useState(false);
+
+  const toggle = () => setModal(!modal);
+  const toggleNested = () => {
+    setNestedModal(!nestedModal);
+    setCloseAll(false);
+  }
+  const toggleAll = () => {
+    setNestedModal(!nestedModal);
+    setCloseAll(true);
+  }
+
   let archiveOrUnarchive;
   let deleteButton = null;
   if (props.archived) {
