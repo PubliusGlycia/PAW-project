@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { updateCard } from '../../../APIs/cards';
 import { Button } from 'reactstrap';
 
-export default class LabelEditGreen extends React.Component {
+export default class LabelEditRed extends React.Component {
 
   handleChangeTitle = (e) => {
     this.setState({
@@ -16,9 +16,9 @@ export default class LabelEditGreen extends React.Component {
     });
   }
 
-  handleChangeGreen = (e) => {
+  handleChangeRed = (e) => {
     this.setState({
-      green: e.target.value
+      red: e.target.value
     });
   }
 
@@ -32,12 +32,12 @@ export default class LabelEditGreen extends React.Component {
       }
     }
     
-    cardGreen = () => {
-        if(this.props.card.green === undefined || this.props.card.green === null){
+    cardRed = () => {
+        if(this.props.card.red === undefined || this.props.card.red === null){
             return ''
         }else{
           return (
-              this.props.card.green
+              this.props.card.red
           )
         }
     }
@@ -49,24 +49,24 @@ export default class LabelEditGreen extends React.Component {
     e.preventDefault();
     const updatedCard = await updateCard(board_id, list_id, card.id, this.state.title, this.state.description, this.state.green, this.state.blue, this.state.yellow, this.state.red);
     this.props.updateCard(updatedCard);
-    this.props.toggleEdit1();
+    this.props.toggleEdit4();
   }
 
   renderEditForm = () => {
-  	if (this.props.editable1 === true ) {
+  	if (this.props.editable4 === true ) {
 	    return (
 	      <div className="d-flex">
 	      	<div>
 	      		<form 
               onSubmit={this.handleSubmit}
             >
-              <label htmlFor="Green">
+              <label htmlFor="Red">
               <input type="text" 
-                name="green" 
-                id="green" 
+                name="red" 
+                id="red" 
                 className="form-control"
-                placeholder='Green'
-                onChange={this.handleChangeGreen}
+                placeholder='Red'
+                onChange={this.handleChangeRed}
               />
               </label>
               <input type="submit"
@@ -74,7 +74,7 @@ export default class LabelEditGreen extends React.Component {
                 className="btn btn-success"
                 required
               />
-              <Button color="warning" onClick={this.props.toggleEdit1}>
+              <Button color="warning" onClick={this.props.toggleEdit4}>
 			  		    Cancel
 			  	    </Button>
             </form>
@@ -85,7 +85,7 @@ export default class LabelEditGreen extends React.Component {
 	  	return (
 	  		<div>
 			  	<div>
-				  	<button className="btn btn-info" onClick={this.props.toggleEdit1}>
+				  	<button className="btn btn-info" onClick={this.props.toggleEdit4}>
 				  		Edit
 				  	</button>
 				  </div>

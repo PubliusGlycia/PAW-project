@@ -8,6 +8,9 @@ export default class CardCreate extends React.Component {
       title: '',
       description: '',
       green: '',
+      blue: '',
+      yellow: '',
+      red: '',
       archive: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,12 +26,15 @@ export default class CardCreate extends React.Component {
     e.preventDefault();
     const board_id = this.props.board_id;
     const list_id = this.props.list_id;
-    const newCard = await addCard(board_id, list_id, this.state.title, this.state.description, this.state.green);
+    const newCard = await addCard(board_id, list_id, this.state.title, this.state.description, this.state.green, this.state.blue, this.state.yellow, this.state.red);
     this.props.onSubmit(newCard);
     this.setState({  
      title: '',
      description: '',
      green: '',
+     blue: '',
+     yellow: '',
+     red: '',
      archive: false,
     });
   }

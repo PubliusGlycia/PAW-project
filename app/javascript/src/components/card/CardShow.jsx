@@ -1,6 +1,9 @@
 import React, { Component, useState } from 'react';
 import CardEdit from './CardEdit'
 import LabelEditGreen from './labels/LabelEditGreen'
+import LabelEditBlue from './labels/LabelEditBlue'
+import LabelEditYellow from './labels/LabelEditYellow'
+import LabelEditRed from './labels/LabelEditRed'
 import AddComment from './AddComment';
 import CardDelete from './CardDelete'
 import CardCreate from '../card/CardCreate'
@@ -17,59 +20,70 @@ export default class CardShow extends React.Component {
 		this.state = { 
 		  editable: false,
 		  editable1: false,
+		  editable2: false,
+		  editable3: false,
+		  editable4: false,
 		  modal: false,
 		  nmodal: false,
 		}
 		this.toggle = this.toggle.bind(this);
 		this.toggleNested= this.toggleNested.bind(this);
 		this.toggleEdit1= this.toggleEdit1.bind(this);
+		this.toggleEdit2= this.toggleEdit2.bind(this);
+		this.toggleEdit3= this.toggleEdit3.bind(this);
+		this.toggleEdit4= this.toggleEdit4.bind(this);
 	  }
 
 	cardTitle = () => {
-		// const editable = this.state.editable;
-		// if (editable === false ) {
 			return (
 				  this.props.card.title
 			  )
-		// }
-			
-		
     }
  
 	cardDescription = () => {
-		// const editable = this.state.editable;
-		// if (editable === false ) {
 			if(this.props.card.description === undefined || this.props.card.description === null){
 				return ''
 			}
 			return (
 				  this.props.card.description
 			  )
-		// }
-		// if(editable === true){
-			// if(this.props.card.description === undefined || this.props.card.description === null){
-				// this.props.card.description = ''
-			// }
-		// }
 	}
 
 	cardGreen = () => {
-		// const editable = this.state.editable;
-		// if (editable === false ) {
 			if(this.props.card.green === undefined || this.props.card.green === null){
 				return ''
 			}
 			return (
 				  this.props.card.green
 			  )
-		// }
-		// if(editable === true){
-			// if(this.props.card.description === undefined || this.props.card.description === null){
-				// this.props.card.description = ''
-			// }
-		// }
 	}
 
+	cardBlue = () => {
+		if(this.props.card.blue === undefined || this.props.card.blue === null){
+			return ''
+		}
+		return (
+			  this.props.card.blue
+		  )
+	}
+
+	cardRed = () => {
+		if(this.props.card.red  === undefined || this.props.card.red === null){
+			return ''
+		}
+		return (
+			  this.props.card.red
+		  )
+	}
+
+	cardYellow = () => {
+		if(this.props.card.yellow === undefined || this.props.card.yellow === null){
+			return ''
+		}
+		return (
+			  this.props.card.yellow
+		  )
+	}
 	toggle() {
 		this.setState({
 		  modal: !this.state.modal
@@ -87,13 +101,31 @@ export default class CardShow extends React.Component {
 		  editable: !this.state.editable,
 		})
 	  }
-
+	
 	  toggleEdit1 = () => {
 		this.setState({
 		  editable1: !this.state.editable1,
 		})
 	  }
 
+	  toggleEdit2 = () => {
+		this.setState({
+		  editable2: !this.state.editable2,
+		})
+	  }
+
+	  toggleEdit3 = () => {
+		this.setState({
+		  editable3: !this.state.editable3,
+		})
+	  }
+
+	  toggleEdit4 = () => {
+		this.setState({
+		  editable4: !this.state.editable4,
+		})
+	  }
+	
 	componentDidMount = async () => {
 		await this.refreshCards();
 	  }
@@ -201,36 +233,36 @@ export default class CardShow extends React.Component {
 									updateCard={this.props.updateCard}
 								/></Badge>
 
-								<Badge style={cardBadgeStyle} color="primary" pill>
-								<CardEdit 
+								<Badge style={cardBadgeStyle} color="primary" pill>{this.cardBlue()}
+								<LabelEditBlue 
 									card={card}
 									card_id={this.props.card_id}
 									board_id={this.props.board_id}
 									list_id={this.props.list_id} 
-									editable={this.state.editable}
-									toggleEdit={this.toggleEdit}
+									editable2={this.state.editable2}
+									toggleEdit2={this.toggleEdit2}
 									updateCard={this.props.updateCard}
 								/></Badge>
 
-								<Badge style={cardBadgeStyle} color="warning" pill>
-								<CardEdit 
+								<Badge style={cardBadgeStyle} color="warning" pill>{this.cardYellow()}
+								<LabelEditYellow 
 									card={card}
 									card_id={this.props.card_id}
 									board_id={this.props.board_id}
 									list_id={this.props.list_id} 
-									editable={this.state.editable}
-									toggleEdit={this.toggleEdit}
+									editable3={this.state.editable3}
+									toggleEdit3={this.toggleEdit3}
 									updateCard={this.props.updateCard}
 								/></Badge>
 
-								<Badge style={cardBadgeStyle} color="danger" pill>
-								<CardEdit 
+								<Badge style={cardBadgeStyle} color="danger" pill>{this.cardRed()}
+								<LabelEditRed 
 									card={card}
 									card_id={this.props.card_id}
 									board_id={this.props.board_id}
 									list_id={this.props.list_id} 
-									editable={this.state.editable}
-									toggleEdit={this.toggleEdit}
+									editable4={this.state.editable4}
+									toggleEdit4={this.toggleEdit4}
 									updateCard={this.props.updateCard}
 								/></Badge>
 
@@ -268,9 +300,9 @@ export default class CardShow extends React.Component {
 		</div>
   		</div>
 		 	<Badge style={cardBadgeStyleInCard} color="success" pill>{this.cardGreen()}</Badge>
-		 	<Badge style={cardBadgeStyleInCard} color="warning" pill> </Badge>
-			<Badge style={cardBadgeStyleInCard} color="danger" pill> </Badge>
-			<Badge style={cardBadgeStyleInCard} color="primary" pill> </Badge>
+			 <Badge style={cardBadgeStyleInCard} color="primary" pill>{this.cardBlue()}</Badge>
+		 	<Badge style={cardBadgeStyleInCard} color="warning" pill>{this.cardYellow()}</Badge>
+			<Badge style={cardBadgeStyleInCard} color="danger" pill>{this.cardRed()}</Badge>
 		</div>
 	
 		  )}
