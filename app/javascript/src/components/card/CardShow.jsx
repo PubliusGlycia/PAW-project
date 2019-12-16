@@ -1,12 +1,13 @@
 import React, { Component, useState } from 'react';
 import Sidebar from './Sidebar';
 import CardEdit from './CardEdit'
+import LabelEdit from './LabelEdit'
 import AddComment from './AddComment';
 import CardDelete from './CardDelete'
 import CardCreate from '../card/CardCreate'
 import CardIndex from '../card/CardIndex'
 import { fetchCards, archiveCard } from '../../APIs/cards'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';  
+import {Badge, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';  
 import { Draggable } from "react-beautiful-dnd"
 import { Container, Row, Col } from 'reactstrap';
 import CardBadge from './CardBadge'
@@ -18,9 +19,13 @@ export default class CardShow extends React.Component {
 		super(props);
 		this.state = { 
 		  editable: false,
+		  editable1: false,
 		  modal: false,
+		  nmodal: false,
 		}
 		this.toggle = this.toggle.bind(this);
+		this.toggleNested= this.toggleNested.bind(this);
+		this.toggleEdit1= this.toggleEdit1.bind(this);
 	  }
 
 	cardTitle = () => {
@@ -51,15 +56,44 @@ export default class CardShow extends React.Component {
 		// }
 	}
 
+	cardGreen = () => {
+		// const editable = this.state.editable;
+		// if (editable === false ) {
+			if(this.props.card.green === undefined || this.props.card.green === null){
+				return ''
+			}
+			return (
+				  this.props.card.green
+			  )
+		// }
+		// if(editable === true){
+			// if(this.props.card.description === undefined || this.props.card.description === null){
+				// this.props.card.description = ''
+			// }
+		// }
+	}
+
 	toggle() {
 		this.setState({
 		  modal: !this.state.modal
 		});
 	  }
 
+	toggleNested() {
+		this.setState({
+			nmodal: !this.state.nmodal
+		})
+    }  
+
 	toggleEdit = () => {
 		this.setState({
 		  editable: !this.state.editable,
+		})
+	  }
+
+	  toggleEdit1 = () => {
+		this.setState({
+		  editable1: !this.state.editable1,
 		})
 	  }
 
@@ -91,6 +125,14 @@ export default class CardShow extends React.Component {
 			minWidth: '17em',
 			maxWidth: '17em'
 		  };
+		
+		const cardBadgeStyle = {
+			padding: '20px',
+			margin: '5px 5px 10px 10px',
+			borderRadius: '3px',
+			minWidth: '35em',
+			maxWidth: '35em',
+		}  
 
 		  const card = this.props.card;
 		
@@ -140,7 +182,63 @@ export default class CardShow extends React.Component {
 						</Row>
 					</Col>
 					<Col>  
-						<Sidebar props={this.props}/>
+					<Button outline color="primary" onClick={this.toggleNested}>Labels</Button>
+						<Modal isOpen={this.state.nmodal} toggle={this.toggleNested} className={this.props.className} >
+						<ModalHeader>Labels</ModalHeader>
+
+						<ModalBody>
+							<div>
+								<Badge style={cardBadgeStyle} color="success" pill>{<p>{"\n" + this.cardGreen()}</p>}
+								<LabelEdit 
+									card={card}
+									card_id={this.props.card_id}
+									board_id={this.props.board_id}
+									list_id={this.props.list_id} 
+									editable1={this.state.editable1}
+									toggleEdit1={this.toggleEdit1}
+									updateCard={this.props.updateCard}
+								/></Badge>
+
+								<Badge style={cardBadgeStyle} color="primary" pill>
+								<CardEdit 
+									card={card}
+									card_id={this.props.card_id}
+									board_id={this.props.board_id}
+									list_id={this.props.list_id} 
+									editable={this.state.editable}
+									toggleEdit={this.toggleEdit}
+									updateCard={this.props.updateCard}
+								/></Badge>
+
+								<Badge style={cardBadgeStyle} color="warning" pill>
+								<CardEdit 
+									card={card}
+									card_id={this.props.card_id}
+									board_id={this.props.board_id}
+									list_id={this.props.list_id} 
+									editable={this.state.editable}
+									toggleEdit={this.toggleEdit}
+									updateCard={this.props.updateCard}
+								/></Badge>
+
+								<Badge style={cardBadgeStyle} color="danger" pill>
+								<CardEdit 
+									card={card}
+									card_id={this.props.card_id}
+									board_id={this.props.board_id}
+									list_id={this.props.list_id} 
+									editable={this.state.editable}
+									toggleEdit={this.toggleEdit}
+									updateCard={this.props.updateCard}
+								/></Badge>
+
+							</div> 
+						</ModalBody>
+
+						<ModalFooter>
+						<Button color="primary" onClick={this.toggleNested}>Done</Button>{' '}
+						</ModalFooter>
+						</Modal>
 					</Col>
 				</Row>
 			</Container>

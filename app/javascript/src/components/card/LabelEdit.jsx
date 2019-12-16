@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { updateCard } from '../../APIs/cards';
 import { Button } from 'reactstrap';
 
-export default class CardEdit extends React.Component {
+export default class LabelEdit extends React.Component {
 
   handleChangeTitle = (e) => {
     this.setState({
@@ -30,16 +30,17 @@ export default class CardEdit extends React.Component {
 				  this.props.card.description
 			  )
       }
-  }
-  cardGreen = () => {
-    if(this.props.card.green === undefined || this.props.card.green === null){
-      return ''
-    }else{
-      return (
-        this.props.card.green
-      )
     }
-  }
+    
+    cardGreen = () => {
+        if(this.props.card.green === undefined || this.props.card.green === null){
+            return ''
+        }else{
+          return (
+              this.props.card.green
+          )
+        }
+    }
 	
   
 
@@ -52,7 +53,7 @@ export default class CardEdit extends React.Component {
   }
 
   renderEditForm = () => {
-  	if (this.props.editable === true ) {
+  	if (this.props.editable1 === true ) {
 	    return (
 	      <div className="d-flex">
 	      	<div>
@@ -68,30 +69,12 @@ export default class CardEdit extends React.Component {
                 onChange={this.handleChangeGreen}
               />
               </label>
-              <label htmlFor="Title">
-              <input type="text" 
-                name="title" 
-                id="title" 
-                className="form-control"
-                placeholder='Title'
-                onChange={this.handleChangeTitle}
-              />
-              </label>
-              <label htmlFor="Description">
-              <input type="text" 
-                name="description" 
-                id="description" 
-                className="form-control"
-                placeholder='Description'
-                onChange={this.handleChangeDescription}
-              />
-              </label>
               <input type="submit"
                 value="Update"
                 className="btn btn-success"
                 required
               />
-              <Button color="warning" onClick={this.props.toggleEdit}>
+              <Button color="warning" onClick={this.props.toggleEdit1}>
 			  		    Cancel
 			  	    </Button>
             </form>
@@ -102,7 +85,7 @@ export default class CardEdit extends React.Component {
 	  	return (
 	  		<div>
 			  	<div>
-				  	<button className="btn btn-info" onClick={this.props.toggleEdit}>
+				  	<button className="btn btn-info" onClick={this.props.toggleEdit1}>
 				  		Edit
 				  	</button>
 				  </div>
