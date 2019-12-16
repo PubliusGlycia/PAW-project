@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { updateCard } from '../../APIs/cards';
+import { updateCard } from '../../../APIs/cards';
 import { Button } from 'reactstrap';
 
-export default class LabelEdit extends React.Component {
+export default class LabelEditGreen extends React.Component {
 
   handleChangeTitle = (e) => {
     this.setState({
@@ -49,7 +49,7 @@ export default class LabelEdit extends React.Component {
     e.preventDefault();
     const updatedCard = await updateCard(board_id, list_id, card.id, this.state.title, this.state.description, this.state.green);
     this.props.updateCard(updatedCard);
-    this.props.toggleEdit();
+    this.props.toggleEdit1();
   }
 
   renderEditForm = () => {

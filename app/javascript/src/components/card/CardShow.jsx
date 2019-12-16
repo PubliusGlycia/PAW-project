@@ -1,16 +1,13 @@
 import React, { Component, useState } from 'react';
-import Sidebar from './Sidebar';
 import CardEdit from './CardEdit'
-import LabelEdit from './LabelEdit'
+import LabelEditGreen from './labels/LabelEditGreen'
 import AddComment from './AddComment';
 import CardDelete from './CardDelete'
 import CardCreate from '../card/CardCreate'
 import CardIndex from '../card/CardIndex'
 import { fetchCards, archiveCard } from '../../APIs/cards'
 import {Badge, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';  
-import { Draggable } from "react-beautiful-dnd"
 import { Container, Row, Col } from 'reactstrap';
-import CardBadge from './CardBadge'
 
 
 
@@ -134,6 +131,11 @@ export default class CardShow extends React.Component {
 			maxWidth: '35em',
 		}  
 
+		const cardBadgeStyleInCard = {
+			margin: '0px 5px 0px 0px',
+			
+		  }
+
 		  const card = this.props.card;
 		
 
@@ -188,8 +190,8 @@ export default class CardShow extends React.Component {
 
 						<ModalBody>
 							<div>
-								<Badge style={cardBadgeStyle} color="success" pill>{<p>{"\n" + this.cardGreen()}</p>}
-								<LabelEdit 
+								<Badge style={cardBadgeStyle} color="success" pill>{this.cardGreen()}
+								<LabelEditGreen
 									card={card}
 									card_id={this.props.card_id}
 									board_id={this.props.board_id}
@@ -265,7 +267,10 @@ export default class CardShow extends React.Component {
 		<div className="d-flex">
 		</div>
   		</div>
-		  <CardBadge card={card}/>
+		 	<Badge style={cardBadgeStyleInCard} color="success" pill>{this.cardGreen()}</Badge>
+		 	<Badge style={cardBadgeStyleInCard} color="warning" pill> </Badge>
+			<Badge style={cardBadgeStyleInCard} color="danger" pill> </Badge>
+			<Badge style={cardBadgeStyleInCard} color="primary" pill> </Badge>
 		</div>
 	
 		  )}
