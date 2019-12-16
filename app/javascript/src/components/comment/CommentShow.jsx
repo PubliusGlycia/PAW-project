@@ -45,7 +45,7 @@ export default class CommentShow extends React.Component {
 		const board_id = this.props.board_id 
 		const list_id = this.props.list_id
 		const card_id = this.props.card_id
-		const comments = await fetchCards(board_id, list_id, card_id);
+		const comments = await fetchComment(board_id, list_id, card_id);
 		this.setState({
 		  comments,
 		}); 

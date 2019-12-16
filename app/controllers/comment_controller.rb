@@ -2,7 +2,7 @@ class CommentController < ApplicationController
     before_action :set_comment, only: %i[update destroy]
     def index
       @card = Card.find(params[:card_id])
-      @comments = @card.comments.order(created_at: :desc)
+      @comment = @card.comments.order(created_at: :desc)
       respond_to do |format|
         format.json do
           render json: @comment
@@ -32,7 +32,7 @@ class CommentController < ApplicationController
     private
   
     def comment_params
-      params.require(:comment).permit(:comment, :card_id)
+      params.require(:comment).permit(:comment, :email, :card_id)
     end
   
     def set_comment

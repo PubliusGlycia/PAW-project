@@ -5,19 +5,19 @@ const addCsrf = object => {
   return object;
 };
 
-export const fetchComments = async (board_id, list_id, card_id) => {
-  const commentResponse = await fetch(`/boards/${board_id}/lists/${list_id}/cards/${card_id}/comments/`, {
+export const fetchComment = async (board_id, list_id, card_id) => {
+  const commentResponse = await fetch(`/boards/${board_id}/lists/${list_id}/cards/${card_id}/comment`, {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
   });
   const commentJSON = await commentResponse.json()
-  return commentJSON.cards;
+  return commentJSON.comment;
 };
 
 export const addComment = async (board_id, list_id, card_id, email, comment) => {
-  const commentResponse = await fetch(`/boards/${board_id}/lists/${list_id}/cards/${card_id}`, {
+  const commentResponse = await fetch(`/boards/${board_id}/lists/${list_id}/cards/${card_id}/comment`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export const addComment = async (board_id, list_id, card_id, email, comment) => 
 };
 
 export const updateComment = async (board_id, list_id, card_id, id, email, comment) => {
-  const commentResponse = await fetch(`/boards/${board_id}/lists/${list_id}/cards/${card_id}/comments/${id}`, {
+  const commentResponse = await fetch(`/boards/${board_id}/lists/${list_id}/cards/${card_id}/comment/${id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ export const updateComment = async (board_id, list_id, card_id, id, email, comme
 };
 
 export const removeComment = async (board_id, list_id, card_id, id) => {
-  const commentResponse = await fetch(`/boards/${board_id}/lists/${list_id}/cards/${card_id}/comments/${id}`, {
+  const commentResponse = await fetch(`/boards/${board_id}/lists/${list_id}/cards/${card_id}/comment/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',

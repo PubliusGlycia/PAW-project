@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { addComment } from '../../APIs/comment';
 
-export default class CardCreate extends React.Component {
+export default class CommentCreate extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 

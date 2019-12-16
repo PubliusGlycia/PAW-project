@@ -1,14 +1,17 @@
 import React, { Component, useState } from 'react';
-import Sidebar from './Sidebar';
 import CardEdit from './CardEdit'
+import LabelEditGreen from './labels/LabelEditGreen'
+import LabelEditBlue from './labels/LabelEditBlue'
+import LabelEditYellow from './labels/LabelEditYellow'
+import LabelEditRed from './labels/LabelEditRed'
 import CardDelete from './CardDelete'
 import CardCreate from '../card/CardCreate'
 import CardIndex from '../card/CardIndex'
+import CommentIndex from '../comment/CommentIndex'
 import { fetchCards, archiveCard } from '../../APIs/cards'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';  
-import { Draggable } from "react-beautiful-dnd"
+import { fetchComment } from '../../APIs/comment'
+import {Badge, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';  
 import { Container, Row, Col } from 'reactstrap';
-import CardBadge from './CardBadge'
 
 
 
@@ -17,63 +20,145 @@ export default class CardShow extends React.Component {
 		super(props);
 		this.state = { 
 		  editable: false,
+		  editable1: false,
+		  editable2: false,
+		  editable3: false,
+		  editable4: false,
 		  modal: false,
+		  nmodal: false,
+		  comments: [],
 		}
 		this.toggle = this.toggle.bind(this);
+		this.toggleNested= this.toggleNested.bind(this);
+		this.toggleEdit1= this.toggleEdit1.bind(this);
+		this.toggleEdit2= this.toggleEdit2.bind(this);
+		this.toggleEdit3= this.toggleEdit3.bind(this);
+		this.toggleEdit4= this.toggleEdit4.bind(this);
 	  }
 
 	cardTitle = () => {
-		// const editable = this.state.editable;
-		// if (editable === false ) {
 			return (
 				  this.props.card.title
 			  )
-		// }
-			
-		
     }
  
 	cardDescription = () => {
-		// const editable = this.state.editable;
-		// if (editable === false ) {
 			if(this.props.card.description === undefined || this.props.card.description === null){
 				return ''
 			}
 			return (
 				  this.props.card.description
 			  )
-		// }
-		// if(editable === true){
-			// if(this.props.card.description === undefined || this.props.card.description === null){
-				// this.props.card.description = ''
-			// }
-		// }
 	}
 
+	cardGreen = () => {
+			if(this.props.card.green === undefined || this.props.card.green === null){
+				return ''
+			}
+			return (
+				  this.props.card.green
+			  )
+	}
+
+	cardBlue = () => {
+		if(this.props.card.blue === undefined || this.props.card.blue === null){
+			return ''
+		}
+		return (
+			  this.props.card.blue
+		  )
+	}
+
+	cardRed = () => {
+		if(this.props.card.red  === undefined || this.props.card.red === null){
+			return ''
+		}
+		return (
+			  this.props.card.red
+		  )
+	}
+
+	cardYellow = () => {
+		if(this.props.card.yellow === undefined || this.props.card.yellow === null){
+			return ''
+		}
+		return (
+			  this.props.card.yellow
+		  )
+	}
 	toggle() {
 		this.setState({
 		  modal: !this.state.modal
 		});
 	  }
 
+	toggleNested() {
+		this.setState({
+			nmodal: !this.state.nmodal
+		})
+    }  
+
 	toggleEdit = () => {
 		this.setState({
 		  editable: !this.state.editable,
 		})
 	  }
+	
+	  toggleEdit1 = () => {
+		this.setState({
+		  editable1: !this.state.editable1,
+		})
+	  }
 
-	componentDidMount = async () => {
-		await this.refreshCards();
+	  toggleEdit2 = () => {
+		this.setState({
+		  editable2: !this.state.editable2,
+		})
+	  }
+
+	  toggleEdit3 = () => {
+		this.setState({
+		  editable3: !this.state.editable3,
+		})
+	  }
+
+	  toggleEdit4 = () => {
+		this.setState({
+		  editable4: !this.state.editable4,
+		})
 	  }
 	
-	refreshCards = async () => {
-		const board_id = this.props.board_id 
-		const list_id = this.props.list_id
-		const cards = await fetchCards(board_id, list_id);
-		this.setState({
-		  cards,
-		}); 
+	componentDidMount = async () => {
+		await this.refreshCards();
+		await this.refreshComment();
 	  }
+	
+	  refreshCards = async () => {
+		  const board_id = this.props.board_id 
+		  const list_id = this.props.list_id
+		  const cards = await fetchCards(board_id, list_id);
+		  this.setState({
+			cards,
+		  }); 
+		}
+	
+		refreshComment = async () => {
+			const board_id = this.props.board_id 
+			const list_id = this.props.list_id
+			const card_id = this.props.card_id
+			const comments = await fetchComment(board_id, list_id, card_id);
+			this.setState({
+			  comments,
+			}); 
+		  }
+
+	
+	addCommentToList = (newComment) => {
+		console.log("addCard")
+		this.setState({
+		comments : [newComment, ...this.state.comments],
+		})
+	}
 
 	handleClickArchive = async () => {
     	const { board_id, list_id, card } = this.props;
@@ -90,6 +175,19 @@ export default class CardShow extends React.Component {
 			minWidth: '17em',
 			maxWidth: '17em'
 		  };
+		
+		const cardBadgeStyle = {
+			padding: '20px',
+			margin: '5px 5px 10px 10px',
+			borderRadius: '3px',
+			minWidth: '35em',
+			maxWidth: '35em',
+		}  
+
+		const cardBadgeStyleInCard = {
+			margin: '0px 5px 0px 0px',
+			
+		  }
 
 		  const card = this.props.card;
 		
@@ -135,10 +233,74 @@ export default class CardShow extends React.Component {
 						</Row>
 						<hr />
 						<Row>
+							
+							<CommentIndex 
+								board_id={this.props.board_id}
+								list_id={this.props.list_id} 
+								card_id={this.props.card_id}
+								comments={this.state.comments}
+								addCommentToList={this.addCommentToList}
+							/>
 						</Row>
 					</Col>
 					<Col>  
-						<Sidebar props={this.props}/>
+					<Button outline color="primary" onClick={this.toggleNested}>Labels</Button>
+						<Modal isOpen={this.state.nmodal} toggle={this.toggleNested} className={this.props.className} >
+						<ModalHeader>Labels</ModalHeader>
+
+						<ModalBody>
+							<div>
+								<Badge style={cardBadgeStyle} color="success" pill>{this.cardGreen()}
+								<LabelEditGreen
+									card={card}
+									card_id={this.props.card_id}
+									board_id={this.props.board_id}
+									list_id={this.props.list_id} 
+									editable1={this.state.editable1}
+									toggleEdit1={this.toggleEdit1}
+									updateCard={this.props.updateCard}
+								/></Badge>
+
+								<Badge style={cardBadgeStyle} color="primary" pill>{this.cardBlue()}
+								<LabelEditBlue 
+									card={card}
+									card_id={this.props.card_id}
+									board_id={this.props.board_id}
+									list_id={this.props.list_id} 
+									editable2={this.state.editable2}
+									toggleEdit2={this.toggleEdit2}
+									updateCard={this.props.updateCard}
+								/></Badge>
+
+								<Badge style={cardBadgeStyle} color="warning" pill>{this.cardYellow()}
+								<LabelEditYellow 
+									card={card}
+									card_id={this.props.card_id}
+									board_id={this.props.board_id}
+									list_id={this.props.list_id} 
+									editable3={this.state.editable3}
+									toggleEdit3={this.toggleEdit3}
+									updateCard={this.props.updateCard}
+								/></Badge>
+
+								<Badge style={cardBadgeStyle} color="danger" pill>{this.cardRed()}
+								<LabelEditRed 
+									card={card}
+									card_id={this.props.card_id}
+									board_id={this.props.board_id}
+									list_id={this.props.list_id} 
+									editable4={this.state.editable4}
+									toggleEdit4={this.toggleEdit4}
+									updateCard={this.props.updateCard}
+								/></Badge>
+
+							</div> 
+						</ModalBody>
+
+						<ModalFooter>
+						<Button color="primary" onClick={this.toggleNested}>Done</Button>{' '}
+						</ModalFooter>
+						</Modal>
 					</Col>
 				</Row>
 			</Container>
@@ -165,7 +327,10 @@ export default class CardShow extends React.Component {
 		<div className="d-flex">
 		</div>
   		</div>
-		  <CardBadge card={card}/>
+		 	<Badge style={cardBadgeStyleInCard} color="success" pill>{this.cardGreen()}</Badge>
+			 <Badge style={cardBadgeStyleInCard} color="primary" pill>{this.cardBlue()}</Badge>
+		 	<Badge style={cardBadgeStyleInCard} color="warning" pill>{this.cardYellow()}</Badge>
+			<Badge style={cardBadgeStyleInCard} color="danger" pill>{this.cardRed()}</Badge>
 		</div>
 	
 		  )}

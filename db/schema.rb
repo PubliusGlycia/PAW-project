@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_05_115735) do
+ActiveRecord::Schema.define(version: 2019_12_16_182232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,8 +49,11 @@ ActiveRecord::Schema.define(version: 2019_12_05_115735) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
-    t.boolean "isArchived"
     t.boolean "archive", default: false
+    t.string "green"
+    t.string "blue"
+    t.string "yellow"
+    t.string "red"
     t.index ["list_id"], name: "index_cards_on_list_id"
   end
 
