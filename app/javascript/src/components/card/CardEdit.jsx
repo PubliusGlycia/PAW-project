@@ -59,15 +59,6 @@ export default class CardEdit extends React.Component {
 	      		<form 
               onSubmit={this.handleSubmit}
             >
-              <label htmlFor="Green">
-              <input type="text" 
-                name="green" 
-                id="green" 
-                className="form-control"
-                placeholder='Green'
-                onChange={this.handleChangeGreen}
-              />
-              </label>
               <label htmlFor="Title">
               <input type="text" 
                 name="title" 

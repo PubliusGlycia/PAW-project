@@ -67,6 +67,8 @@ export default class LabelEditGreen extends React.Component {
                 className="form-control"
                 placeholder='Green'
                 onChange={this.handleChangeGreen}
+                else onClickCapture={this.handleChangeGreen}
+                // onChange={this.handleChangeGreen}
               />
               </label>
               <input type="submit"
