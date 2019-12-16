@@ -19,10 +19,7 @@ export default class CommentShow extends React.Component {
 		)
     }
  
-	commentText = () => {
-		if(this.props.card.description === undefined || this.props.card.description === null){
-			return ''
-		}
+	comment = () => {
 		return (
 			this.props.comment.comment
 		)
@@ -60,7 +57,7 @@ export default class CommentShow extends React.Component {
 	  	return (
 			<dl>
 				<dt>{this.commentAuthor}</dt>
-				<dd>{this.commentText}</dd>
+				<dd>{this.comment}</dd>
 			</dl>
 		)
 	}
