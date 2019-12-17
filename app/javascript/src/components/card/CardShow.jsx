@@ -26,7 +26,6 @@ export default class CardShow extends React.Component {
 		  editable4: false,
 		  modal: false,
 		  nmodal: false,
-		  comments: [],
 		}
 		this.toggle = this.toggle.bind(this);
 		this.toggleNested= this.toggleNested.bind(this);
@@ -130,7 +129,6 @@ export default class CardShow extends React.Component {
 	
 	componentDidMount = async () => {
 		await this.refreshCards();
-		await this.refreshComment();
 	  }
 	
 	  refreshCards = async () => {
@@ -140,25 +138,7 @@ export default class CardShow extends React.Component {
 		  this.setState({
 			cards,
 		  }); 
-		}
-	
-		refreshComment = async () => {
-			const board_id = this.props.board_id 
-			const list_id = this.props.list_id
-			const card_id = this.props.card_id
-			const comments = await fetchComment(board_id, list_id, card_id);
-			this.setState({
-			  comments,
-			}); 
-		  }
-
-	
-	addCommentToList = (newComment) => {
-		console.log("addCard")
-		this.setState({
-		comments : [newComment, ...this.state.comments],
-		})
-	}
+		}	
 
 	handleClickArchive = async () => {
     	const { board_id, list_id, card } = this.props;
@@ -233,13 +213,10 @@ export default class CardShow extends React.Component {
 						</Row>
 						<hr />
 						<Row>
-							
 							<CommentIndex 
 								board_id={this.props.board_id}
 								list_id={this.props.list_id} 
 								card_id={this.props.card_id}
-								comments={this.state.comments}
-								addCommentToList={this.addCommentToList}
 							/>
 						</Row>
 					</Col>

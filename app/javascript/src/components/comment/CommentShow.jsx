@@ -56,8 +56,8 @@ export default class CommentShow extends React.Component {
 		
 	  	return (
 			<dl>
-				<dt>{this.commentAuthor}</dt>
-				<dd>{this.comment}</dd>
+				<dt>{this.commentAuthor()}</dt>
+				<dd>{this.comment()}</dd>
 			</dl>
 		)
 	}

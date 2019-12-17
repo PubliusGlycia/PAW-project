@@ -13,7 +13,7 @@ export const fetchComment = async (board_id, list_id, card_id) => {
     },
   });
   const commentJSON = await commentResponse.json()
-  return commentJSON.comment;
+  return commentJSON.comments;
 };
 
 export const addComment = async (board_id, list_id, card_id, email, comment) => {
