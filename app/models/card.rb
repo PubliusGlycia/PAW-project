@@ -1,5 +1,6 @@
 class Card < ApplicationRecord
   belongs_to :list
+  has_many :comments
 
   validate :file_size_have_to_be_less_than_5mb, on: :create
 

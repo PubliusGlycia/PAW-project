@@ -4,11 +4,12 @@ import LabelEditGreen from './labels/LabelEditGreen'
 import LabelEditBlue from './labels/LabelEditBlue'
 import LabelEditYellow from './labels/LabelEditYellow'
 import LabelEditRed from './labels/LabelEditRed'
-import AddComment from './AddComment';
 import CardDelete from './CardDelete'
 import CardCreate from '../card/CardCreate'
 import CardIndex from '../card/CardIndex'
+import CommentIndex from '../comment/CommentIndex'
 import { fetchCards, archiveCard } from '../../APIs/cards'
+import { fetchComment } from '../../APIs/comment'
 import {Badge, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';  
 import { Container, Row, Col } from 'reactstrap';
 
@@ -130,14 +131,14 @@ export default class CardShow extends React.Component {
 		await this.refreshCards();
 	  }
 	
-	refreshCards = async () => {
-		const board_id = this.props.board_id 
-		const list_id = this.props.list_id
-		const cards = await fetchCards(board_id, list_id);
-		this.setState({
-		  cards,
-		}); 
-	  }
+	  refreshCards = async () => {
+		  const board_id = this.props.board_id 
+		  const list_id = this.props.list_id
+		  const cards = await fetchCards(board_id, list_id);
+		  this.setState({
+			cards,
+		  }); 
+		}	
 
 	handleClickArchive = async () => {
     	const { board_id, list_id, card } = this.props;
@@ -212,7 +213,11 @@ export default class CardShow extends React.Component {
 						</Row>
 						<hr />
 						<Row>
-							<AddComment/>
+							<CommentIndex 
+								board_id={this.props.board_id}
+								list_id={this.props.list_id} 
+								card_id={this.props.card_id}
+							/>
 						</Row>
 					</Col>
 					<Col>  
