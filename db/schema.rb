@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2019_12_16_182232) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
+    t.boolean "isArchived"
     t.boolean "archive", default: false
     t.string "green"
     t.string "blue"

@@ -18,7 +18,15 @@ export default class CommentShow extends React.Component {
 			this.props.comment.author
 		)
     }
- 
+
+	commentDate = () => {
+		const date = new Date(this.props.comment.created_at);
+		const str = date.toUTCString();
+		return (
+			str
+		)
+    }
+
 	comment = () => {
 		return (
 			this.props.comment.comment
@@ -56,7 +64,8 @@ export default class CommentShow extends React.Component {
 		
 	  	return (
 			<dl>
-				<dt>{this.commentAuthor()}</dt>
+				<dt>Added at: {this.commentDate()}</dt>
+				<dd>{this.commentAuthor()}</dd>
 				<dd>{this.comment()}</dd>
 			</dl>
 		)

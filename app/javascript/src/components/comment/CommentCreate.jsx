@@ -7,6 +7,7 @@ export default class CommentCreate extends React.Component {
     this.state = { 
       email: '',
       comment: '',
+      created_at: '',
     };
     //this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -23,11 +24,12 @@ export default class CommentCreate extends React.Component {
     const board_id = this.props.board_id;
     const list_id = this.props.list_id;
     const card_id = this.props.card_id;
-    const newComment = await addComment(board_id, list_id, card_id, 'Autor', this.state.comment);
+    const newComment = await addComment(board_id, list_id, card_id, "Autor", this.state.comment, this.state.created_at);
     this.props.onSubmit(newComment);
     this.setState({  
       email: '',
       comment: '',
+      created_at: '',
     });
   }
 

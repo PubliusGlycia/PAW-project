@@ -16,27 +16,27 @@ export const fetchComment = async (board_id, list_id, card_id) => {
   return commentJSON.comments;
 };
 
-export const addComment = async (board_id, list_id, card_id, email, comment) => {
+export const addComment = async (board_id, list_id, card_id, email, comment, created_at) => {
   const commentResponse = await fetch(`/boards/${board_id}/lists/${list_id}/cards/${card_id}/comment`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
         },
-        body: JSON.stringify(addCsrf({comment: { email, comment, card_id } })),
+        body: JSON.stringify(addCsrf({comment: { email, comment, card_id, created_at } })),
     });
   const commentJSON = await commentResponse.json();
   return commentJSON.comment;
 };
 
-export const updateComment = async (board_id, list_id, card_id, id, email, comment) => {
+export const updateComment = async (board_id, list_id, card_id, id, email, comment, created_at) => {
   const commentResponse = await fetch(`/boards/${board_id}/lists/${list_id}/cards/${card_id}/comment/${id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-    body: JSON.stringify(addCsrf({ comment: { email, comment } })),
+    body: JSON.stringify(addCsrf({ comment: { email, comment, created_at } })),
   });
   const commentJSON = await commentResponse.json();
   return commentJSON.comment;

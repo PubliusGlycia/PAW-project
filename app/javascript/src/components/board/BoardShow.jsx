@@ -33,7 +33,7 @@ export default class BoardShow extends React.Component {
       color: 'white',
     };
 
-  	const title = this.props.location.state.title
+  	const title = this.props.title
   	const board_id = this.props.match.params.id
 
 	  return (
