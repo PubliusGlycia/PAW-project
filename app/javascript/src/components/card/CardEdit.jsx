@@ -40,8 +40,6 @@ export default class CardEdit extends React.Component {
       )
     }
   }
-	
-  
 
   handleSubmit = async e =>{
     const {board_id, list_id, card} = this.props
@@ -70,9 +68,9 @@ export default class CardEdit extends React.Component {
               />
               </label><br />
               <label htmlFor="Description">
-              <textarea required="" rows="10" cols="50" placeholder="Write a description..."
-                  name="description" id="description" className="form-control" placeholder='Description'
-                  onChange={this.handleChangeDescription} value={this.cardDescription()}></textarea>
+              <input required="" rows="10" cols="50" 
+                  name="description" id="description" className="form-control" placeholder="Description"
+                  onChange={this.handleChangeDescription}></input>
               </label><br />
               <input type="submit"
                 value="Update"

@@ -197,8 +197,8 @@ export default class CardShow extends React.Component {
 				<Row>
 					<Col>  
 						<Row>
-							<b><h4>Description:</h4></b><br />
-							<p>{"\n" + this.cardDescription()}</p>
+							<b><h5>Description:</h5></b><br/>
+							<h5>{"\n" + this.cardDescription()}</h5>
 						</Row>
 						<Row>
 							<CardEdit 
