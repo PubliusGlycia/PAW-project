@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { fetchComment } from '../../APIs/comment';
+import CommentDelete from './CommentDelete';
+import CommentEdit from './CommentEdit';
 
 
 
@@ -15,7 +17,7 @@ export default class CommentShow extends React.Component {
 
 	commentAuthor = () => {
 		return (
-			this.props.comment.author
+			this.props.comment.email
 		)
     }
 
@@ -61,13 +63,38 @@ export default class CommentShow extends React.Component {
 
 	render() {
 		const comment = this.props.comment;
+		const commentStyle = {
+			backgroundColor: '#efefef',
+			borderRadius: '3px',
+			maxWidth: '90%'
+		  };
 		
 	  	return (
+			<div style={commentStyle} >
 			<dl>
-				<dt>Added at: {this.commentDate()}</dt>
-				<dd>{this.commentAuthor()}</dd>
-				<dd>{this.comment()}</dd>
+				<dt>{this.commentAuthor()} Added at: {this.commentDate()}</dt>
+				<dd>
+					{this.comment()}
+					<hr />
+					<CommentEdit
+						board_id = {this.props.board_id}
+						list_id = {this.props.list_id}
+						card_id = {this.props.card_id}
+						comment_id = {this.props.comment.id}
+						comment = {comment}
+						editable={this.state.editable}
+						toggleEdit={this.toggleEdit}
+					/>
+					<CommentDelete
+						board_id = {this.props.board_id}
+						list_id = {this.props.list_id}
+						card_id = {this.props.card_id}
+						comment_id = {this.props.comment.id}
+						comment = {comment}
+					/>
+				</dd>
 			</dl>
+			</div>
 		)
 	}
 }
