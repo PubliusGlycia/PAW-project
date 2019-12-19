@@ -41,7 +41,7 @@ export default class CommentCreate extends React.Component {
     
     return (
       <aside  className="comment-section">
-        <h2 style={cardColomnStyle}>Comment:</h2>
+        
         <div>
           <div className="member-container">
             <div className="card-member"></div>

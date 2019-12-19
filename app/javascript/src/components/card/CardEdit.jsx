@@ -68,9 +68,9 @@ export default class CardEdit extends React.Component {
               />
               </label><br />
               <label htmlFor="Description">
-              <input required="" rows="10" cols="50" 
+              <textarea required="" rows="10" cols="50" 
                   name="description" id="description" className="form-control" placeholder="Description"
-                  onChange={this.handleChangeDescription}></input>
+                  onChange={this.handleChangeDescription}></textarea>
               </label><br />
               <input type="submit"
                 value="Update"

@@ -8,6 +8,7 @@ import CardDelete from './CardDelete'
 import CardCreate from '../card/CardCreate'
 import CardIndex from '../card/CardIndex'
 import CommentIndex from '../comment/CommentIndex'
+import HistoryIndex from '../history/HistoryIndex'
 import { fetchCards, archiveCard } from '../../APIs/cards'
 import { fetchComment } from '../../APIs/comment'
 import {Badge, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';  
@@ -169,8 +170,11 @@ export default class CardShow extends React.Component {
 			
 		  }
 
-		  const card = this.props.card;
+    	const card = this.props.card;
 		
+		const cardColomnStyle = {
+            textAlign:'left',
+        }
 
 	  return (
 		//   <Draggable draggableId={String(this.props.card.id)} index={this.props.list_id}>
@@ -212,6 +216,9 @@ export default class CardShow extends React.Component {
 							/>
 						</Row>
 						<hr />
+						<div>
+            				<h2 style={cardColomnStyle}>Comments:</h2>
+          				</div>
 						<Row>
 							<CommentIndex 
 								board_id={this.props.board_id}
@@ -219,9 +226,19 @@ export default class CardShow extends React.Component {
 								card_id={this.props.card_id}
 							/>
 						</Row>
+						<hr />
 					</Col>
 					<Col>  
 					<Button outline color="primary" onClick={this.toggleNested}>Labels</Button>
+						<div style= {{margin: '40px 0px 0px 10px'}} >
+            				<h2 style={cardColomnStyle}>History:</h2>
+          				</div>
+						<HistoryIndex 
+							board_id={this.props.board_id}
+							list_id={this.props.list_id} 
+							card_id={this.props.card_id}
+						/>
+
 						<Modal isOpen={this.state.nmodal} toggle={this.toggleNested} className={this.props.className} >
 						<ModalHeader>Labels</ModalHeader>
 

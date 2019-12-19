@@ -9,6 +9,9 @@ export default class CommentShow extends React.Component {
 		this.state = { 
 		  editable: false,
 		  modal: false,
+      	  email: '',
+      	  created_at: '',
+      	  updated_at: '',
 		}
 		this.toggle = this.toggle.bind(this);
 	  }
@@ -61,11 +64,13 @@ export default class CommentShow extends React.Component {
 
 	render() {
 		const comment = this.props.comment;
-		
+		const cardColomnStyle = {
+            textAlign:'left',
+        }
+
 	  	return (
 			<dl>
-				<dt>Added at: {this.commentDate()}</dt>
-				<dd>{this.commentAuthor()}</dd>
+				<dt>{this.commentAuthor()}</dt>
 				<dd>{this.comment()}</dd>
 			</dl>
 		)
