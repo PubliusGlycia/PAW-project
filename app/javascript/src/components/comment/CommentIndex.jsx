@@ -31,25 +31,23 @@ export default class CommentIndex extends React.Component {
 
 	render() {
 	  return (
-      <div className="m-2">
-		    <Col>
-				{this.state.comment.map((comment, i) => (
-					<div className="m-2" key={i}>
-						<CommentShow 
-							comment={comment}
-							board_id={this.props.board_id}
-							list_id={this.props.list_id}
-							card_id={this.props.card_id}
-						/>
-					</div>
-					))}
-				<CommentCreate 
-					board_id={this.props.board_id}
-					list_id={this.props.list_id} 
-					card_id={this.props.card_id}
-					onSubmit={this.addCommentToList} 
-				/>
-		    </Col>
+      <div style={{width: '100%'}}>
+			{this.state.comment.map((comment, i) => (
+				<div key={i}>
+					<CommentShow 
+						comment={comment}
+						board_id={this.props.board_id}
+						list_id={this.props.list_id}
+						card_id={this.props.card_id}
+					/>
+				</div>
+				))}
+			<CommentCreate 
+				board_id={this.props.board_id}
+				list_id={this.props.list_id} 
+				card_id={this.props.card_id}
+				onSubmit={this.addCommentToList} 
+			/>
     </div>
 	  )
   }
