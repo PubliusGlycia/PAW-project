@@ -21,6 +21,7 @@ export default class CommentEdit extends React.Component {
     const {board_id, list_id, card_id, comment} = this.props
     e.preventDefault();
     const updatedComment = await updateComment(board_id, list_id, card_id, comment.id , 'Autor', this.state.comment, this.state.created_at);
+    this.props.updateComment(updatedComment);
     this.props.toggleEdit();
   }
 

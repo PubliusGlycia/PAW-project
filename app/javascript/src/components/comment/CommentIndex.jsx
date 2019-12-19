@@ -22,6 +22,23 @@ export default class CommentIndex extends React.Component {
     await this.refreshComments();
   }
 
+  updateComment = (updatedComment) => {
+    	console.log("updateComment")
+    	this.setState({
+      		comment: this.state.comment.map(comment1 =>
+        comment1.id === updatedComment.id ? updatedComment: comment1
+      ),
+    	});
+ 	 }
+
+  deleteComment = (commentToDelete) => {
+    console.log("deleteCard")
+    this.setState({
+      comment: this.state.comment.filter(
+        comment2 => commentToDelete.id !== comment2.id)
+    });
+  }
+
   refreshComments = async () => {
     const comments = await fetchComment(this.props.board_id, this.props.list_id, this.props.card_id);
     this.setState({
@@ -39,6 +56,8 @@ export default class CommentIndex extends React.Component {
 						board_id={this.props.board_id}
 						list_id={this.props.list_id}
 						card_id={this.props.card_id}
+            updateComment={this.updateComment}
+            deleteComment={this.deleteComment}
 					/>
 				</div>
 				))}

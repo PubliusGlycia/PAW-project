@@ -3,8 +3,6 @@ import { fetchComment } from '../../APIs/comment';
 import CommentDelete from './CommentDelete';
 import CommentEdit from './CommentEdit';
 
-
-
 export default class CommentShow extends React.Component {
 	constructor(props) {
 		super(props);
@@ -53,7 +51,7 @@ export default class CommentShow extends React.Component {
 	componentDidMount = async () => {
 		await this.refreshComments();
 	  }
-	
+
 	refreshComments = async () => {
 		const board_id = this.props.board_id 
 		const list_id = this.props.list_id
@@ -72,6 +70,7 @@ export default class CommentShow extends React.Component {
 			maxWidth: '90%'
 		  };
 		
+
 	  	return (
 			<div style={commentStyle} >
 			<dl>
@@ -87,6 +86,7 @@ export default class CommentShow extends React.Component {
 						comment = {comment}
 						editable={this.state.editable}
 						toggleEdit={this.toggleEdit}
+						updateComment={this.props.updateComment}
 					/>
 					<CommentDelete
 						board_id = {this.props.board_id}
@@ -94,6 +94,7 @@ export default class CommentShow extends React.Component {
 						card_id = {this.props.card_id}
 						comment_id = {this.props.comment.id}
 						comment = {comment}
+						deleteComment={this.props.deleteComment}
 					/>
 				</dd>
 			</dl>

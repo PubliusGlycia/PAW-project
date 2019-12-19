@@ -27,8 +27,8 @@ export default class CardIndex extends React.Component {
 	            <CardShow 
                 card={card}
                 board_id={this.props.board_id}
-					  list_id={this.props.list_id}
-					  card_id={card.id}
+			    list_id={this.props.list_id}
+			    card_id={card.id}
                 updateCard={this.props.updateCard}
                 deleteCard={this.props.deleteCard}
 				archiveCard={this.props.archiveCard}

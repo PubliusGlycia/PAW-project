@@ -140,12 +140,12 @@ export default class CardShow extends React.Component {
 			cards,
 		  }); 
 		}	
-
+	
 	handleClickArchive = async () => {
     	const { board_id, list_id, card } = this.props;
 		const archive = 'true';
     	const cardToArchive = await archiveCard(board_id, list_id, card.id, archive);
-    	this.props.archiveCard(cardToArchive); 
+    	this.props.archiveCard(cardToArchive);
   	};
 
 	render() {

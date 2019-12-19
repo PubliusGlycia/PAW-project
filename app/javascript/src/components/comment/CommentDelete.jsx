@@ -6,7 +6,8 @@ export default class CommentDelete extends React.Component {
 
   handleClick = async () => {
     const { board_id, list_id, card_id, comment } = this.props;
-    const cardToDelete = await removeComment(board_id, list_id, card_id, comment.id);
+    const commentToDelete = await removeComment(board_id, list_id, card_id, comment.id);
+    this.props.deleteComment(commentToDelete);
   };
 
   render () {

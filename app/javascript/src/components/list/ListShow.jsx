@@ -75,9 +75,8 @@ addCardToList = (newCard) => {
     this.setState({
       cards,
     });
-
-     
   }
+
 
 	render() {
 
