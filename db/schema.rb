@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 2019_12_16_182232) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
-    t.boolean "archive", default: false
     t.boolean "isArchived"
+    t.boolean "archive", default: false
     t.string "green"
     t.string "blue"
     t.string "yellow"
@@ -84,8 +84,6 @@ ActiveRecord::Schema.define(version: 2019_12_16_182232) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
-    t.string "provider"
-    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -32,7 +32,7 @@ class CommentController < ApplicationController
     private
   
     def comment_params
-      params.require(:comment).permit(:comment, :email, :card_id, :created_at, image: [])
+      params.require(:comment).permit(:comment, :email, :card_id, :created_at)
     end
   
     def set_comment
